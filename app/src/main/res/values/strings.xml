@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name" translatable="false">Collage Maker - XCollage</string>
+    <string name="save_path">Save path</string>
+    <string name="feedback">Feedback</string>
+    <string name="version">Version</string>
+    <string name="send">Send</string>
+    <string name="can_not_select_20">You can select at most 20 photos.</string>
+    <string name="manager">Manage</string>
+    <string name="loading">Loading…</string>
+    <string name="save">Save</string>
+    <string name="saved">Saved</string>
+    <string name="share_instagram" translatable="false">Instagram</string>
+    <string name="share_whatsapp" translatable="false">Whatsapp</string>
+    <string name="share_messenger" translatable="false">Messenger</string>
+    <string name="share_facebook" translatable="false">Facebook</string>
+    <string name="share_more">More</string>
+    <string name="share_another">"Make Another "</string>
+    <string name="share_home">Homepage</string>
+</resources>

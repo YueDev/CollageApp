@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">Salva percorso</string>
+    <string name="feedback">Risposta</string>
+    <string name="version">Versione</string>
+    <string name="send">Invia</string>
+    <string name="can_not_select_20">Puoi selezionare al massimo 20 foto.</string>
+    <string name="manager">Gestione</string>
+    <string name="loading">Caricamento in corso…</string>
+    <string name="save">Salva</string>
+    <string name="saved">Salvato</string>
+    <string name="share_more">Di più</string>
+    <string name="share_another">Fare un\'altra</string>
+    <string name="share_home">Homepage</string>
+</resources>

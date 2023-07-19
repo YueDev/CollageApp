@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">Запазване на пътя</string>
+    <string name="feedback">Обратна връзка</string>
+    <string name="version">версия</string>
+    <string name="send">Изпрати</string>
+    <string name="can_not_select_20">Можете да изберете най-много 20 снимки.</string>
+    <string name="manager">използване</string>
+    <string name="loading">Зареждане…</string>
+    <string name="save">Запази</string>
+    <string name="saved">Запазени</string>
+    <string name="share_more">Още</string>
+    <string name="share_another">Направете Друг</string>
+    <string name="share_home">У дома</string>
+</resources>

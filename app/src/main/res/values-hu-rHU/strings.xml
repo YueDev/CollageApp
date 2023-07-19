@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">Út mentése</string>
+    <string name="feedback">Visszacsatolás</string>
+    <string name="version">Változat</string>
+    <string name="send">Küld</string>
+    <string name="can_not_select_20">Legfeljebb 20 fényképet választhat ki.</string>
+    <string name="manager">használat</string>
+    <string name="loading">Betöltés…</string>
+    <string name="save">Mentés</string>
+    <string name="saved">Mentett</string>
+    <string name="share_more">Több</string>
+    <string name="share_another">Készíts Másikat</string>
+    <string name="share_home">Honlap</string>
+</resources>

@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">Uložiť cestu</string>
+    <string name="feedback">Spätná väzba</string>
+    <string name="version">verzia</string>
+    <string name="send">Pošli</string>
+    <string name="can_not_select_20">Môžete vybrať najviac 20 fotografií.</string>
+    <string name="manager">použitie</string>
+    <string name="loading">Načítava…</string>
+    <string name="save">Uložiť</string>
+    <string name="saved">uložené</string>
+    <string name="share_more">Viac</string>
+    <string name="share_another">Urobiť ďalšie</string>
+    <string name="share_home">Domovská stránka</string>
+</resources>

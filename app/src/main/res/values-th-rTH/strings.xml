@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">บันทึกเส้นทาง</string>
+    <string name="feedback">ผลตอบรับ</string>
+    <string name="version">รุ่น</string>
+    <string name="send">ส่ง</string>
+    <string name="can_not_select_20">คุณสามารถเลือกได้สูงสุด 20 ภาพ</string>
+    <string name="manager">ใช้</string>
+    <string name="loading">กำลังโหลด …</string>
+    <string name="save">บันทึก</string>
+    <string name="saved">ที่บันทึกไว้</string>
+    <string name="share_more">มากกว่า</string>
+    <string name="share_another">ทำให้อีก</string>
+    <string name="share_home">โฮมเพจ</string>
+</resources>

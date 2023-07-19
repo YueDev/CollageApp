@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">Gem sti</string>
+    <string name="feedback">Feedback</string>
+    <string name="version">Version</string>
+    <string name="send">Sende</string>
+    <string name="can_not_select_20">Du kan højst vælge 20 fotos.</string>
+    <string name="manager">brug</string>
+    <string name="loading">Indlæser…</string>
+    <string name="save">Gemme</string>
+    <string name="saved">Gemte</string>
+    <string name="share_more">Mere</string>
+    <string name="share_another">Lav en anden</string>
+    <string name="share_home">Hjemmeside</string>
+</resources>

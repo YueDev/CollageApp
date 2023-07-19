@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">Pad opslaan</string>
+    <string name="feedback">Feedback</string>
+    <string name="version">Versie</string>
+    <string name="send">Sturen</string>
+    <string name="can_not_select_20">U kunt maximaal 20 foto\'s selecteren.</string>
+    <string name="manager">gebruik</string>
+    <string name="loading">Bezig met laden…</string>
+    <string name="save">Sparen</string>
+    <string name="saved">Opgeslagen</string>
+    <string name="share_more">Meer</string>
+    <string name="share_another">Maak nog een</string>
+    <string name="share_home">Startpagina</string>
+</resources>

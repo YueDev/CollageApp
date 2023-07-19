@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">Spara sökväg</string>
+    <string name="feedback">Respons</string>
+    <string name="version">Version</string>
+    <string name="send">Skicka</string>
+    <string name="can_not_select_20">Du kan välja högst 20 foton.</string>
+    <string name="manager">använda sig av</string>
+    <string name="loading">Läser in…</string>
+    <string name="save">Spara</string>
+    <string name="saved">sparade</string>
+    <string name="share_more">Mer</string>
+    <string name="share_another">"Gör en ny "</string>
+    <string name="share_home">Hemsida</string>
+</resources>

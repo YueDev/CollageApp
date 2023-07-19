@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">パスを保存</string>
+    <string name="feedback">フィードバック</string>
+    <string name="version">バージョン</string>
+    <string name="send">送る</string>
+    <string name="can_not_select_20">最大20枚の写真を選択できます。</string>
+    <string name="manager">管理</string>
+    <string name="loading">読み込んでいます…</string>
+    <string name="save">保存する</string>
+    <string name="saved">保存しました</string>
+    <string name="share_more">もっと</string>
+    <string name="share_another">別のものを作る</string>
+    <string name="share_home">ホームページ</string>
+</resources>

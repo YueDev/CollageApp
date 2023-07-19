@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">保存路径</string>
+    <string name="feedback">反馈</string>
+    <string name="version">版本</string>
+    <string name="send">发送</string>
+    <string name="can_not_select_20">您最多可以选择20张照片。</string>
+    <string name="manager">管理</string>
+    <string name="loading">载入中…</string>
+    <string name="save">保存</string>
+    <string name="saved">已保存</string>
+    <string name="share_more">更多</string>
+    <string name="share_another">再做一张</string>
+    <string name="share_home">首页</string>
+</resources>

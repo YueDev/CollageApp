@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">Salvați calea</string>
+    <string name="feedback">Părere</string>
+    <string name="version">Versiune</string>
+    <string name="send">Trimite</string>
+    <string name="can_not_select_20">Puteți selecta cel mult 20 de fotografii.</string>
+    <string name="manager">utilizare</string>
+    <string name="loading">Se încarcă…</string>
+    <string name="save">Salvați</string>
+    <string name="saved">salvată</string>
+    <string name="share_more">Mai mult</string>
+    <string name="share_another">Faceți Altul</string>
+    <string name="share_home">Pagina principala</string>
+</resources>

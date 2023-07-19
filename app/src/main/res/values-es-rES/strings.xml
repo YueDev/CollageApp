@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">Guardar en la Carpeta</string>
+    <string name="feedback">Realimentación</string>
+    <string name="version">Versión</string>
+    <string name="send">Enviar</string>
+    <string name="can_not_select_20">Puede seleccionar como máximo 20 fotos.</string>
+    <string name="manager">Gestión</string>
+    <string name="loading">Cargando…</string>
+    <string name="save">Salvar</string>
+    <string name="saved">Salvado</string>
+    <string name="share_more">Más</string>
+    <string name="share_another">Hacer Otro</string>
+    <string name="share_home">Página principal</string>
+</resources>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EDEDED"
+    tools:context=".activity.XCollageActivity">
+
+    <include
+        android:id="@+id/content_layout"
+        layout="@layout/layout_x_collage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <View
+        android:id="@+id/view_close_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:alpha="0"
+        android:visibility="gone" />
+
+
+    <FrameLayout
+        android:id="@+id/content_layout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/text_view_close"
+            android:layout_width="80dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="9dp"
+            android:background="@drawable/bg_close"
+            android:fontFamily="@font/boston_black"
+            android:gravity="center"
+            android:text="Close"
+            android:alpha="0"
+            android:textColor="#ffffffff"
+            android:textSize="15sp"
+            android:visibility="gone" />
+
+
+    </FrameLayout>
+
+    <com.example.collageapp.view.LoadingLayout
+        android:id="@+id/view_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="gone" />
+
+</FrameLayout>

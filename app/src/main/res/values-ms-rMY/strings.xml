@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">Simpan Jalan</string>
+    <string name="feedback">Maklum balas</string>
+    <string name="version">Versi</string>
+    <string name="send">Hantar</string>
+    <string name="can_not_select_20">Anda boleh memilih paling banyak 20 gambar.</string>
+    <string name="manager">menggunakan</string>
+    <string name="loading">Memuat …</string>
+    <string name="save">Jimat</string>
+    <string name="saved">Disimpan</string>
+    <string name="share_more">Lagi</string>
+    <string name="share_another">Buat Lain</string>
+    <string name="share_home">Laman utama</string>
+</resources>

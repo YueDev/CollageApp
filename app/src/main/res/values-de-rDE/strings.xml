@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">Pfad speichern</string>
+    <string name="feedback">Feedback</string>
+    <string name="version">Ausführung</string>
+    <string name="send">Senden</string>
+    <string name="can_not_select_20">Sie können höchstens 20 Fotos auswählen.</string>
+    <string name="manager">Management</string>
+    <string name="loading">Wird geladen…</string>
+    <string name="save">sparen</string>
+    <string name="saved">Gerettet</string>
+    <string name="share_more">Mehr</string>
+    <string name="share_another">Noch eine machen</string>
+    <string name="share_home">Startseite</string>
+</resources>

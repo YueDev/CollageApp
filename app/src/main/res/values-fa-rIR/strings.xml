@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">ذخیره مسیر</string>
+    <string name="feedback">بازخورد</string>
+    <string name="version">نسخه</string>
+    <string name="send">ارسال</string>
+    <string name="can_not_select_20">شما می توانید حداکثر 20 عکس را انتخاب کنید.</string>
+    <string name="manager">استفاده کنید</string>
+    <string name="loading">بارگذاری…</string>
+    <string name="save">صرفه جویی</string>
+    <string name="saved">ذخیره</string>
+    <string name="share_more">بیشتر</string>
+    <string name="share_another">دیگری بساز</string>
+    <string name="share_home">صفحه نخست</string>
+</resources>

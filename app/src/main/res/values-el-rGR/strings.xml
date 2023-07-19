@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">Αποθήκευση διαδρομής</string>
+    <string name="feedback">Ανατροφοδότηση</string>
+    <string name="version">Εκδοχή</string>
+    <string name="send">Στείλετε</string>
+    <string name="can_not_select_20">Μπορείτε να επιλέξετε το πολύ 20 φωτογραφίες.</string>
+    <string name="manager">χρήση</string>
+    <string name="loading">Φόρτωση…</string>
+    <string name="save">Αποθηκεύσετε</string>
+    <string name="saved">Αποθηκεύτηκε</string>
+    <string name="share_more">Περισσότερο</string>
+    <string name="share_another">Φτιάξε άλλο</string>
+    <string name="share_home">Αρχική σελίδα</string>
+</resources>

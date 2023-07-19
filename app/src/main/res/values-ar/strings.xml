@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">حفظ المسار</string>
+    <string name="feedback">ردود الفعل</string>
+    <string name="version">الإصدار</string>
+    <string name="send">أرسل</string>
+    <string name="can_not_select_20">يمكنك تحديد 20 صورة على الأكثر.</string>
+    <string name="manager">الإدارة</string>
+    <string name="loading">جار التحميل…</string>
+    <string name="save">حفظ</string>
+    <string name="saved">تم الحفظ</string>
+    <string name="share_more">أكثر</string>
+    <string name="share_another">أصنع شيء أخر</string>
+    <string name="share_home">الصفحة الرئيسية</string>
+</resources>

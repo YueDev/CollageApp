@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">путь для сохранения</string>
+    <string name="feedback">Обратная связь</string>
+    <string name="version">Версия</string>
+    <string name="send">Отправить</string>
+    <string name="can_not_select_20">Вы можете выбрать не более 20 фотографий.</string>
+    <string name="manager">управление</string>
+    <string name="loading">Loading …</string>
+    <string name="save">Сохранить</string>
+    <string name="saved">Сохраненный</string>
+    <string name="share_more">Более</string>
+    <string name="share_another">Сделать еще</string>
+    <string name="share_home">Домашняя страница</string>
+</resources>

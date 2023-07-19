@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">पथ बचाओ</string>
+    <string name="feedback">प्रतिपुष्टि</string>
+    <string name="version">संस्करण</string>
+    <string name="send">संदेश</string>
+    <string name="can_not_select_20">आप अधिकतम 20 तस्वीरों का चयन कर सकते हैं।</string>
+    <string name="manager">उपयोग</string>
+    <string name="loading">लोड हो रहा है…</string>
+    <string name="save">सहेजें</string>
+    <string name="saved">बचाया</string>
+    <string name="share_more">अधिक</string>
+    <string name="share_another">एक और बनाओ</string>
+    <string name="share_home">मुखपृष्ठ</string>
+</resources>

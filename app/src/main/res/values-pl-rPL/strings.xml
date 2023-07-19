@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">Zapisz ścieżkę</string>
+    <string name="feedback">Sprzężenie zwrotne</string>
+    <string name="version">Wersja</string>
+    <string name="send">Wysłać</string>
+    <string name="can_not_select_20">Możesz wybrać maksymalnie 20 zdjęć.</string>
+    <string name="manager">posługiwać się</string>
+    <string name="loading">Ładowanie…</string>
+    <string name="save">Zapisać</string>
+    <string name="saved">Zapisano</string>
+    <string name="share_more">Więcej</string>
+    <string name="share_another">Zrób Kolejny</string>
+    <string name="share_home">Strona główna</string>
+</resources>

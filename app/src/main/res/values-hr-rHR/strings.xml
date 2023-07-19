@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">Spremi put</string>
+    <string name="feedback">Povratne informacije</string>
+    <string name="version">Verzija</string>
+    <string name="send">Poslati</string>
+    <string name="can_not_select_20">Možete odabrati najviše 20 fotografija.</string>
+    <string name="manager">koristiti</string>
+    <string name="loading">Učitavam…</string>
+    <string name="save">Uštedjeti</string>
+    <string name="saved">Spremljeni</string>
+    <string name="share_more">Više</string>
+    <string name="share_another">Napravite još jednu</string>
+    <string name="share_home">Početna stranica</string>
+</resources>

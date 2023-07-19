@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">Yolu Saxla</string>
+    <string name="feedback">Əlaqə</string>
+    <string name="version">Versiya</string>
+    <string name="send">Göndər</string>
+    <string name="can_not_select_20">Ən çox 20 fotoşəkil seçə bilərsiniz.</string>
+    <string name="manager">istifadə edin</string>
+    <string name="loading">Yüklənir …</string>
+    <string name="save">Yadda saxla</string>
+    <string name="saved">Saxlandı</string>
+    <string name="share_more">Daha çox</string>
+    <string name="share_another">Başqasını Yarat</string>
+    <string name="share_home">Ana səhifə</string>
+</resources>

@@ -1,0 +1,14 @@
+<resources>
+    <string name="save_path">Yolu kaydet</string>
+    <string name="feedback">Geri bildirim</string>
+    <string name="version">versiyon</string>
+    <string name="send">Gönder</string>
+    <string name="can_not_select_20">En fazla 20 fotoğraf seçebilirsiniz.</string>
+    <string name="manager">yönetim</string>
+    <string name="loading">Yükleniyor…</string>
+    <string name="save">Kayıt etmek</string>
+    <string name="saved">Kayıtlı</string>
+    <string name="share_more">Daha</string>
+    <string name="share_another">Başka Yap</string>
+    <string name="share_home">Anasayfa</string>
+</resources>
