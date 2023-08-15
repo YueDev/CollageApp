@@ -90,10 +90,10 @@ public class GalleryRepository {
             AlbumBean allBean = new AlbumBean(0, NAME_ALL_ALBUM_BEAN, uri);
             allBean.setNum(totalNum);
             beanList.add(0, allBean);
-            AlbumBean googlePhotosBean = ShareUtil.getGooglePhotosAlbumBean(context);
-            if (googlePhotosBean != null) {
-                beanList.add(1, googlePhotosBean);
-            }
+//            AlbumBean googlePhotosBean = ShareUtil.getGooglePhotosAlbumBean(context);
+//            if (googlePhotosBean != null) {
+//                beanList.add(1, googlePhotosBean);
+//            }
             return beanList;
         };
 

@@ -54,10 +54,6 @@ public class GalleryActivity extends BaseActivity {
     private View mArrowView;
     private AlbumView mAlbumView;
 
-    private LottieAnimationView mNumLottieView;
-
-    //图片管理 张数
-    private TextView mManagerTextView;
 
     //下一步
     private ImageView mNextImageView;
@@ -158,9 +154,9 @@ public class GalleryActivity extends BaseActivity {
         mGalleryRecyclerView = findViewById(R.id.recycler_view_gallery);
         int spanCount = 3 ;
         if (mWidthWindowSizeClass == WindowSizeClass.MEDIUM) {
-            spanCount = 4;
-        } else if (mWidthWindowSizeClass == WindowSizeClass.EXPANDED) {
             spanCount = 5;
+        } else if (mWidthWindowSizeClass == WindowSizeClass.EXPANDED) {
+            spanCount = 7;
         }
         mGalleryRecyclerView.setLayoutManager(new GridLayoutManager(this, spanCount));
         mGalleryRecyclerView.setHasFixedSize(true);
@@ -182,12 +178,10 @@ public class GalleryActivity extends BaseActivity {
         mArrowView = findViewById(R.id.image_view_arrow);
         mArrowView.setOnClickListener(this::clickAlbum);
 
-        mNumLottieView = findViewById(R.id.lottie_view_num);
 
-        mManagerTextView = findViewById(R.id.text_view_manager);
-        mManagerTextView.setOnClickListener(this::clickManager);
 
         mNextImageView = findViewById(R.id.image_view_next);
+        mNextImageView.setVisibility(View.GONE);
         mNextImageView.setOnClickListener(this::clickNext);
 
     }
@@ -261,19 +255,19 @@ public class GalleryActivity extends BaseActivity {
         );
 
         //选择的uri
-        mViewModel.getSelectUris().observe(this, uris -> {
-            if (uris == null) return;
-            if (uris.size() == 0) {
-                mNextImageView.setImageResource(R.drawable.icon_gallery_next_unuse);
-                mManagerTextView.setTextColor(Color.parseColor("#A4A7A8"));
-            } else {
-                mNextImageView.setImageResource(R.drawable.icon_gallery_next);
-                mManagerTextView.setTextColor(Color.parseColor("#495052"));
-
-            }
-            mManagerTextView.setText(uris.size() + "");
-            if (uris.size() > 0) mNumLottieView.playAnimation();
-        });
+//        mViewModel.getSelectUris().observe(this, uris -> {
+//            if (uris == null) return;
+//            if (uris.size() == 0) {
+//                mNextImageView.setImageResource(R.drawable.icon_gallery_next_unuse);
+//                mManagerTextView.setTextColor(Color.parseColor("#A4A7A8"));
+//            } else {
+//                mNextImageView.setImageResource(R.drawable.icon_gallery_next);
+//                mManagerTextView.setTextColor(Color.parseColor("#495052"));
+//
+//            }
+//            mManagerTextView.setText(uris.size() + "");
+//            if (uris.size() > 0) mNumLottieView.playAnimation();
+//        });
     }
 
 
@@ -309,17 +303,8 @@ public class GalleryActivity extends BaseActivity {
 
     //点击rv 添加图片
     private void clickAdd(GalleryBean bean) {
-        if (mViewModel.getSelectNum() >= mMax) {
-            if (mCanNotSelectString == null) {
-                mCanNotSelectString = getString(R.string.can_not_select_20);
-                mCanNotSelectString = mCanNotSelectString.replace("20", mMax + "");
-            }
-            Toast.makeText(this, mCanNotSelectString, Toast.LENGTH_SHORT).show();
-            return;
-        }
-        mViewModel.addUri(bean);
+        MediaPipeActivity.startNewInstance(this, bean.getUri());
     }
-
 
     @Override
     public void onBackPressed() {

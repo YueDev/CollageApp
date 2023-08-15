@@ -27,7 +27,7 @@
         android:background="#99000000"
         android:fontFamily="@font/boston_heavy_it"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/bg_white"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="@id/image_view_pic"
         app:layout_constraintEnd_toEndOf="@id/image_view_pic"

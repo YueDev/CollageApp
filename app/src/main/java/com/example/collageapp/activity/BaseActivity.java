@@ -26,7 +26,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         //全屏显示 让应用内容可以绘制到状态栏
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 
-        //状态栏的icon颜色 对应主题xml里windowLightStatusBar
+        //状态栏的icon颜色 从theme.xml指定了 xml里的windowLightStatusBar
 //        WindowInsetsControllerCompat insetsController = WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());
 //        insetsController.setAppearanceLightStatusBars(false);
 
@@ -71,16 +71,17 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
+    //启用沉浸模式
+//    @Override
+//    public void onWindowFocusChanged(boolean hasFocus) {
+//        super.onWindowFocusChanged(hasFocus);
 //        if (hasFocus) {
 //            //沉浸模式 隐藏状态栏
 //            WindowInsetsControllerCompat windowInsetsController = WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());
 //            windowInsetsController.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
 //            windowInsetsController.hide(WindowInsetsCompat.Type.statusBars());
 //        }
-    }
+//    }
 
     //另一个适配刘海和导航栏的布局
     protected int setContentIdRes2() {

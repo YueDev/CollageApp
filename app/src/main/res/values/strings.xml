@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Collage Maker - XCollage</string>
+    <string name="app_name" translatable="false">Collage</string>
     <string name="save_path">Save path</string>
     <string name="feedback">Feedback</string>
     <string name="version">Version</string>

@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.collageapp"
-        minSdk = 21
+        minSdk = 24
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -53,6 +53,8 @@ dependencies {
     implementation(libs.scrollpicker)
     implementation(libs.permissionx)
     implementation(libs.lottie)
+
+    implementation(libs.mediapipe.tasks.vision)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

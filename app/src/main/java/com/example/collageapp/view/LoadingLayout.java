@@ -19,7 +19,6 @@ import com.example.collageapp.R;
  */
 public class LoadingLayout extends FrameLayout {
 
-    private TextView mProgressTextView;
 
     public LoadingLayout(@NonNull Context context) {
         super(context);
@@ -40,11 +39,10 @@ public class LoadingLayout extends FrameLayout {
         setClickable(true);
         setFocusable(true);
         LayoutInflater.from(getContext()).inflate(R.layout.layout_loading, this, true);
-        mProgressTextView = findViewById(R.id.text_view_progress);
     }
 
     public void setProgressText(String progressText) {
-        mProgressTextView.setText(progressText);
+
     }
 
     public void setProgress(int progress) {
@@ -52,7 +50,7 @@ public class LoadingLayout extends FrameLayout {
     }
 
     public void setProgress(int progress, int max) {
-        mProgressTextView.setText(progress + "/" + max);
+
     }
 
 

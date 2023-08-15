@@ -23,34 +23,6 @@
         </androidx.recyclerview.widget.RecyclerView>
 
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottie_view_num"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginBottom="55dp"
-            android:background="@drawable/icon_image_view_num"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:lottie_autoPlay="false"
-            app:lottie_loop="false"
-            app:lottie_rawRes="@raw/lottie_gallery_num" />
-
-        <TextView
-            android:id="@+id/text_view_manager"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:fontFamily="@font/boston_heavy_it"
-            android:gravity="center"
-            android:paddingTop="13dp"
-            android:text="0"
-            android:textColor="#A4A7A8"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/lottie_view_num"
-            app:layout_constraintEnd_toEndOf="@+id/lottie_view_num"
-            app:layout_constraintStart_toStartOf="@+id/lottie_view_num"
-            app:layout_constraintTop_toTopOf="@+id/lottie_view_num" />
-
         <ImageView
             android:id="@+id/image_view_next"
             android:layout_width="70dp"
@@ -67,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="75dp" />
+            app:layout_constraintGuide_begin="50dp" />
 
         <com.example.collageapp.view.AlbumView
             android:id="@+id/view_album"
@@ -83,7 +55,6 @@
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/guideline10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
