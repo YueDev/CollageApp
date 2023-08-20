@@ -74,7 +74,6 @@
             android:id="@+id/text_view_album"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:fontFamily="@font/boston_black"
             android:gravity="center_vertical"
             android:maxLines="1"
             android:textColor="#495052"

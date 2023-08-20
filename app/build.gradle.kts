@@ -20,7 +20,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -53,8 +53,6 @@ dependencies {
     implementation(libs.scrollpicker)
     implementation(libs.permissionx)
     implementation(libs.lottie)
-
-    implementation(libs.mediapipe.tasks.vision)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

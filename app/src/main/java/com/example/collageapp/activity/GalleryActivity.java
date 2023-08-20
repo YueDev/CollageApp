@@ -3,7 +3,6 @@ package com.example.collageapp.activity;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,7 +16,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.example.collageapp.R;
 import com.example.collageapp.adapter.GalleryAdapter;
 import com.example.collageapp.bean.AlbumBean;
@@ -303,7 +301,7 @@ public class GalleryActivity extends BaseActivity {
 
     //点击rv 添加图片
     private void clickAdd(GalleryBean bean) {
-        MediaPipeActivity.startNewInstance(this, bean.getUri());
+        SingleImageActivity.startNewInstance(this, bean.getUri());
     }
 
     @Override

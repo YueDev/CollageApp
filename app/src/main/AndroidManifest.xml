@@ -45,7 +45,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".activity.MediaPipeActivity"
+            android:name=".activity.SingleImageActivity"
             android:exported="false" />
 
         <activity

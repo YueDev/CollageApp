@@ -25,7 +25,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#99000000"
-        android:fontFamily="@font/boston_heavy_it"
         android:gravity="center"
         android:textColor="@color/bg_white"
         android:textSize="40sp"

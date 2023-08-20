@@ -13,9 +13,6 @@ glide = "4.14.2"
 scrollpicker = "1.0.11"
 permissionx = "1.7.1"
 lottie = "6.1.0"
-mediapipe = "0.20230731"
-
-#implementation 'com.google.mediapipe:tasks-vision:0.10.0'
 
 
 [libraries]
@@ -32,8 +29,6 @@ glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "gl
 scrollpicker = { group = "cn.simonlee.widget", name = "scrollpicker", version.ref = "scrollpicker" }
 permissionx = { group = "com.guolindev.permissionx", name = "permissionx", version.ref = "permissionx" }
 lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
-
-mediapipe-tasks-vision = { group = "com.google.mediapipe", name = "tasks-vision", version.ref = "mediapipe" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
