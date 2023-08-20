@@ -97,6 +97,7 @@ public class SingleImageActivity extends BaseActivity {
             //toast的message为null 一些android版本会崩溃
             String s = message == null ? "unknown error" : message;
             Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+
             finish();
         });
     }
