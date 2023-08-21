@@ -28,6 +28,7 @@ import com.example.collageapp.util.SizeUtil;
 import com.example.collageapp.util.WindowSizeClass;
 import com.example.collageapp.view.AlbumView;
 import com.example.collageapp.viewmodel.GalleryViewModel;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,8 @@ public class GalleryActivity extends BaseActivity {
     //下一步
     private ImageView mNextImageView;
 
+
+
     //宽度size
     private WindowSizeClass mWidthWindowSizeClass = WindowSizeClass.COMPACT;
 
@@ -65,6 +68,8 @@ public class GalleryActivity extends BaseActivity {
     private boolean mIsAdd = false;
 
     private String mCanNotSelectString;
+
+    private SwitchMaterial mFastModeSwitch;
 
 
     ActivityResultLauncher<Intent> mGooglePhotosLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -182,6 +187,7 @@ public class GalleryActivity extends BaseActivity {
         mNextImageView.setVisibility(View.GONE);
         mNextImageView.setOnClickListener(this::clickNext);
 
+        mFastModeSwitch = findViewById(R.id.switch_fast_mode);
     }
 
 
@@ -301,7 +307,7 @@ public class GalleryActivity extends BaseActivity {
 
     //点击rv 添加图片
     private void clickAdd(GalleryBean bean) {
-        SingleImageActivity.startNewInstance(this, bean.getUri());
+        SingleImageActivity.startNewInstance(this, bean.getUri(), mFastModeSwitch.isChecked());
     }
 
     @Override

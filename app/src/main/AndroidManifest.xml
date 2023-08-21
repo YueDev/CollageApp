@@ -81,6 +81,10 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="face" />
+
     </application>
 
 </manifest>

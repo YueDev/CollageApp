@@ -53,6 +53,9 @@ dependencies {
     implementation(libs.scrollpicker)
     implementation(libs.permissionx)
     implementation(libs.lottie)
+    implementation(libs.face.detection)
+
+    implementation(libs.play.services.base)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
