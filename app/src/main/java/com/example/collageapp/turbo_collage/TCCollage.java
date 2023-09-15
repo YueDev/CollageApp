@@ -77,7 +77,7 @@ public class TCCollage {
         TCResult result = new TCResult();
         if (this.collageItems.size() > 0) {
             for (int i = 0; i < this.collageItems.size(); i++) {
-                TCCollageItem collageItem = (TCCollageItem) this.collageItems.get(i);
+                TCCollageItem collageItem = this.collageItems.get(i);
                 TCRect tcRecf = getItemInCanvasRect(collageItem, frame, width, height);
                 if (!collageItem.emptyUUID()) {
                     result.add(collageItem.uuid, tcRecf.getRectF());
