@@ -77,8 +77,6 @@ public class GalleryAdapter extends ListAdapter<GalleryBean, GalleryAdapter.Gall
 
             Glide.with(mImageView)
                     .load(bean.getUri())
-                    .thumbnail(requestBuilder)
-                    .sizeMultiplier(0.75f)
                     .into(mImageView);
 
 
