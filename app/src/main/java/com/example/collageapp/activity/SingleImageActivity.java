@@ -20,7 +20,6 @@ public class SingleImageActivity extends BaseActivity {
     private int mSize = 1920;
 
     private View mLoadingView;
-    private ShowView mShowView;
 
     public static void startNewInstance(Context context, Uri uri) {
         Intent intent = new Intent(context, SingleImageActivity.class).setAction(ACTION_START_NEW_INSTANCE);
@@ -68,8 +67,6 @@ public class SingleImageActivity extends BaseActivity {
 
     private void initView() {
         mLoadingView = findViewById(R.id.view_loading);
-        mShowView = findViewById(R.id.image_view_show);
-
     }
 
 
@@ -97,7 +94,6 @@ public class SingleImageActivity extends BaseActivity {
             //toast的message为null 一些android版本会崩溃
             String s = message == null ? "unknown error" : message;
             Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-
             finish();
         });
     }

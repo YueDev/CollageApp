@@ -5,12 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".activity.XCollageActivity">
 
-    <com.example.collageapp.view.ShowView
-        android:id="@+id/image_view_show"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitCenter" />
-
     <com.example.collageapp.view.LoadingLayout
         android:id="@+id/view_loading"
         android:layout_width="match_parent"
