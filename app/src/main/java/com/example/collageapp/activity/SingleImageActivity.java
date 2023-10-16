@@ -4,10 +4,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.core.content.res.ResourcesCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.collageapp.R;
-import com.example.collageapp.view.ShowView;
+import com.example.collageapp.adapter.SimpleImageAdapter;
+import com.example.collageapp.adapter.SimpleImageHolder;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import kotlin.Unit;
 
 
 public class SingleImageActivity extends BaseActivity {
@@ -20,6 +31,10 @@ public class SingleImageActivity extends BaseActivity {
     private int mSize = 1920;
 
     private View mLoadingView;
+
+    private RecyclerView mRecyclerView;
+    private SimpleImageAdapter mAdapter;
+    private List<Integer> mResList;
 
     public static void startNewInstance(Context context, Uri uri) {
         Intent intent = new Intent(context, SingleImageActivity.class).setAction(ACTION_START_NEW_INSTANCE);
@@ -56,6 +71,15 @@ public class SingleImageActivity extends BaseActivity {
             return;
         }
 
+        //点9的资源list
+        mResList = new ArrayList<>();
+        mResList.add(R.drawable.test_22);
+        mResList.add(R.drawable.test_24);
+        mResList.add(R.drawable.test_25);
+        mResList.add(R.drawable.test_27);
+        mResList.add(R.drawable.test_28);
+
+
         initView();
         initViewModel();
         initClick();
@@ -67,6 +91,15 @@ public class SingleImageActivity extends BaseActivity {
 
     private void initView() {
         mLoadingView = findViewById(R.id.view_loading);
+        mRecyclerView = findViewById(R.id.recycler_view_image);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+
+        mAdapter = new SimpleImageAdapter((position, imageResId) -> {
+            findViewById(R.id.image_view_test).setForeground(ResourcesCompat.getDrawable(getResources(), imageResId, null));
+            return Unit.INSTANCE;
+        });
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.submitList(mResList);
     }
 
 
@@ -81,6 +114,7 @@ public class SingleImageActivity extends BaseActivity {
 
     private void loadData() {
         mLoadingView.setVisibility(View.GONE);
+
     }
 
 
