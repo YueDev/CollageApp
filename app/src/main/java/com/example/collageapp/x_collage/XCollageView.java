@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.PathInterpolator;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
@@ -184,7 +185,7 @@ public class XCollageView extends View {
 
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
         if (!mCanDraw) return;
 
