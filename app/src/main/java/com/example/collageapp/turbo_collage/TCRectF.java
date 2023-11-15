@@ -1,5 +1,7 @@
 package com.example.collageapp.turbo_collage;
 
+import androidx.annotation.NonNull;
+
 /**
  * Created by Yue on 2022/5/27.
  */
@@ -17,6 +19,7 @@ public class TCRectF {
         this.bottom = bottom;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "RectF{" +

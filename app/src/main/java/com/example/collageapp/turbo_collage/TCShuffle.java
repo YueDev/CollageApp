@@ -23,7 +23,6 @@ public class TCShuffle {
 
         double result = 4726483295817170944.0;
 
-
         for (TCCollageItem item : arrayList) {
             double c2 = Math.min(item.ratioRect.right * d, result);
             result = Math.min(item.ratioRect.bottom * d2, c2);
@@ -53,7 +52,7 @@ public class TCShuffle {
 
     private static TCShuffle getTotalShuffle(Map<String, Double> ratioMap) {
         TCShuffle shuffle;
-        if (ratioMap.size() <= 0) {
+        if (ratioMap.isEmpty()) {
             shuffle = null;
         } else {
             Set<String> keySet = ratioMap.keySet();
@@ -74,49 +73,45 @@ public class TCShuffle {
 
 
     public static TCShuffle getTotalShuffle(Map<String, Double> ratioMap, double width, double height) {
-        TCShuffle shuffle;
-        if (ratioMap.size() <= 0) {
-            shuffle = null;
-        } else {
-            double canvasRatio = width / height;
-            TCShuffle a = getTotalShuffle(ratioMap);
-            a.b(canvasRatio);
-            int i = 0;
-            TCShuffle dVar = null;
-            double r17 = 0;
-            while (i < 500) {
-                double z = r17;
-                TCShuffle dVar2 = dVar;
-                if (Math.abs(a.a() - canvasRatio) < 0.01d) {
-                    double z2 = r17;
-                    if (dVar == null) {
-                        dVar2 = a;
-                        z2 = a.a(width, height);
-                    }
-                    double a2 = a.a(width, height);
-                    z = z2;
-                    if (a2 > z2) {
-                        z = a2;
-                        dVar2 = a;
-                    }
+        if (ratioMap.isEmpty()) return null;
+
+        TCShuffle result;
+        double canvasRatio = width / height;
+        TCShuffle a = getTotalShuffle(ratioMap);
+        a.b(canvasRatio);
+        int i = 0;
+        TCShuffle dVar = null;
+        double r17 = 0;
+        while (i < 500) {
+            double z = r17;
+            TCShuffle dVar2 = dVar;
+            if (Math.abs(a.a() - canvasRatio) < 0.01d) {
+                double z2 = r17;
+                if (dVar == null) {
+                    dVar2 = a;
+                    z2 = a.a(width, height);
                 }
-                TCShuffle a3 = getTotalShuffle(ratioMap);
-                a3.b(canvasRatio);
-                TCShuffle dVar3 = a;
-                if (Math.abs(a3.a() - canvasRatio) < Math.abs(a.a() - canvasRatio)) {
-                    dVar3 = a3;
+                double a2 = a.a(width, height);
+                z = z2;
+                if (a2 > z2) {
+                    z = a2;
+                    dVar2 = a;
                 }
-                i++;
-                r17 = z;
-                dVar = dVar2;
-                a = dVar3;
             }
-            shuffle = dVar;
-            if (dVar == null) {
-                shuffle = a;
+            TCShuffle a3 = getTotalShuffle(ratioMap);
+            a3.b(canvasRatio);
+            TCShuffle dVar3 = a;
+            if (Math.abs(a3.a() - canvasRatio) < Math.abs(a.a() - canvasRatio)) {
+                dVar3 = a3;
             }
+            i++;
+            r17 = z;
+            dVar = dVar2;
+            a = dVar3;
         }
-        return shuffle;
+        result = dVar;
+        if (result == null) result = a;
+        return result;
     }
 
     private void setRatio(double setRatio) {
@@ -164,51 +159,47 @@ public class TCShuffle {
             this.tcJoin = TCJoin.TCUpDownJoin;
         } else {
             this.tcJoin = TCJoin.TCLeftRightJoin;
-
         }
     }
 
     public double a() {
-        double r10;
-        if (this.uuid != null) {
-            r10 = this.ratio;
-        } else {
-            double a = this.s1.a();
-            double a2 = this.s2.a();
-            r10 = this.tcJoin == TCJoin.TCLeftRightJoin ? a + a2 : 1.0d / ((1.0d / a) + (1.0d / a2));
-        }
-        return r10;
+        if (uuid != null) return ratio;
+
+        double result;
+        double a = this.s1.a();
+        double a2 = this.s2.a();
+        result = (this.tcJoin == TCJoin.TCLeftRightJoin) ? (a + a2) : (1.0d / ((1.0d / a) + (1.0d / a2)));
+        return result;
     }
 
     public void a(List<TCCollageItem> list, TCRect iVar) {
         TCRect iVar2;
         TCRect iVar3;
-        if (list != null) {
-            if (this.uuid != null) {
-                list.add(new TCCollageItem(this.uuid, iVar));
-                return;
-            }
-            double a = this.s1.a();
-            double a2 = this.s2.a();
-            if (this.tcJoin == TCJoin.TCLeftRightJoin) {
-                if (TCUtils.randomBoolean()) {
-                    TCRect iVar4 = new TCRect(iVar.left, iVar.top, iVar.right * (a / (a2 + a)), iVar.bottom);
-                    iVar2 = new TCRect(iVar.left + iVar4.right, iVar.top, iVar.right - iVar4.right, iVar.bottom);
-                    iVar3 = iVar4;
-                } else {
-                    iVar2 = new TCRect(iVar.left, iVar.top, iVar.right * (a2 / (a + a2)), iVar.bottom);
-                    iVar3 = new TCRect(iVar.left + iVar2.right, iVar.top, iVar.right - iVar2.right, iVar.bottom);
-                }
-            } else if (TCUtils.randomBoolean()) {
-                TCRect iVar5 = new TCRect(iVar.left, iVar.top, iVar.right, ((1.0d / a) / ((1.0d / a) + (1.0d / a2))) * iVar.bottom);
-                iVar2 = new TCRect(iVar.left, iVar.top + iVar5.bottom, iVar.right, iVar.bottom - iVar5.bottom);
-                iVar3 = iVar5;
-            } else {
-                iVar2 = new TCRect(iVar.left, iVar.top, iVar.right, ((1.0d / a2) / ((1.0d / a) + (1.0d / a2))) * iVar.bottom);
-                iVar3 = new TCRect(iVar.left, iVar.top + iVar2.bottom, iVar.right, iVar.bottom - iVar2.bottom);
-            }
-            this.s1.a(list, iVar3);
-            this.s2.a(list, iVar2);
+        if (list == null) return;
+        if (this.uuid != null) {
+            list.add(new TCCollageItem(this.uuid, iVar));
+            return;
         }
+        double a = this.s1.a();
+        double a2 = this.s2.a();
+        if (this.tcJoin == TCJoin.TCLeftRightJoin) {
+            if (TCUtils.randomBoolean()) {
+                TCRect iVar4 = new TCRect(iVar.left, iVar.top, iVar.right * (a / (a2 + a)), iVar.bottom);
+                iVar2 = new TCRect(iVar.left + iVar4.right, iVar.top, iVar.right - iVar4.right, iVar.bottom);
+                iVar3 = iVar4;
+            } else {
+                iVar2 = new TCRect(iVar.left, iVar.top, iVar.right * (a2 / (a + a2)), iVar.bottom);
+                iVar3 = new TCRect(iVar.left + iVar2.right, iVar.top, iVar.right - iVar2.right, iVar.bottom);
+            }
+        } else if (TCUtils.randomBoolean()) {
+            TCRect iVar5 = new TCRect(iVar.left, iVar.top, iVar.right, ((1.0d / a) / ((1.0d / a) + (1.0d / a2))) * iVar.bottom);
+            iVar2 = new TCRect(iVar.left, iVar.top + iVar5.bottom, iVar.right, iVar.bottom - iVar5.bottom);
+            iVar3 = iVar5;
+        } else {
+            iVar2 = new TCRect(iVar.left, iVar.top, iVar.right, ((1.0d / a2) / ((1.0d / a) + (1.0d / a2))) * iVar.bottom);
+            iVar3 = new TCRect(iVar.left, iVar.top + iVar2.bottom, iVar.right, iVar.bottom - iVar2.bottom);
+        }
+        this.s1.a(list, iVar3);
+        this.s2.a(list, iVar2);
     }
 }

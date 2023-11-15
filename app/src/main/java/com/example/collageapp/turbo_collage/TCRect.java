@@ -1,5 +1,7 @@
 package com.example.collageapp.turbo_collage;
 
+import androidx.annotation.NonNull;
+
 public class TCRect {
 
     public double left;
@@ -18,6 +20,7 @@ public class TCRect {
         return new TCRectF((float) this.left, (float) this.top, (float) (this.left + this.right), (float) (this.top + this.bottom));
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "TCRect{" +

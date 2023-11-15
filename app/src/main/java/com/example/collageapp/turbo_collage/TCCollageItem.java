@@ -15,16 +15,11 @@ public class TCCollageItem {
     public double getRatioMaxBound(double canvasWidth, double canvasHeight) {
         double w = canvasWidth * this.ratioRect.right;
         double h = this.ratioRect.bottom * canvasHeight;
-        int i = (Double.compare(w, h));
-        double max = w;
-        if (i < 0) {
-            max = h;
-        }
-        return max;
+        return Math.max(w, h);
     }
 
     public boolean emptyUUID() {
-        return uuid == null || uuid.trim().length() <= 0;
+        return uuid == null || uuid.trim().isEmpty();
     }
 
     @NonNull

@@ -28,7 +28,7 @@ public class TCCollage {
 
         collageItems.add(new TCCollageItem(null, new TCRect(0.0d, 0.0d, 1.0d, 1.0d)));
 
-        if (bitmaps != null && bitmaps.size() > 0) {
+        if (bitmaps != null && !bitmaps.isEmpty()) {
             for (TCBitmap bitmap : bitmaps) {
                 String uuid = bitmap.getUUID();
                 TCCollageItem emptyCollageItem = getEmptyItemOrNull();
@@ -75,13 +75,13 @@ public class TCCollage {
 
     private TCResult drawCollage(double frame) {
         TCResult result = new TCResult();
-        if (this.collageItems.size() > 0) {
-            for (int i = 0; i < this.collageItems.size(); i++) {
-                TCCollageItem collageItem = this.collageItems.get(i);
-                TCRect tcRecf = getItemInCanvasRect(collageItem, frame, width, height);
-                if (!collageItem.emptyUUID()) {
-                    result.add(collageItem.uuid, tcRecf.getRectF());
-                }
+        if (collageItems.isEmpty()) return result;
+
+        for (int i = 0; i < this.collageItems.size(); i++) {
+            TCCollageItem collageItem = this.collageItems.get(i);
+            TCRect tcRectF = getItemInCanvasRect(collageItem, frame, width, height);
+            if (!collageItem.emptyUUID()) {
+                result.add(collageItem.uuid, tcRectF.getRectF());
             }
         }
         return result;
@@ -102,7 +102,7 @@ public class TCCollage {
 
     private void reCollage() {
         this.collageItems.clear();
-        if (bitmapMap.size() <= 0) {
+        if (bitmapMap.isEmpty()) {
             collageItems.add(new TCCollageItem(null, new TCRect(0.0d, 0.0d, 1.0d, 1.0d)));
         } else {
             HashMap<String, Double> ratioMap = new HashMap<>();
@@ -111,18 +111,19 @@ public class TCCollage {
                 TCBitmap bitmap = entry.getValue();
                 ratioMap.put(uuid, bitmap.getWidth() * 1.0 / bitmap.getHeight());
             }
-
             TCShuffle totalShuffle = TCShuffle.getTotalShuffle(ratioMap, this.width, this.height);
             //这个返回这个结果，就是计算的质量Math.abs(totalShuffle.a() - ((this.width) / this.height)) < 0.01d;
             //一般来说 几张图计算出来 留白比较多，这个值就是false
-            totalShuffle.a(this.collageItems, new TCRect(0.0d, 0.0d, 1.0d, 1.0d));
+            if (totalShuffle != null) {
+                totalShuffle.a(this.collageItems, new TCRect(0.0d, 0.0d, 1.0d, 1.0d));
+            }
         }
     }
 
 
     private TCCollageItem getEmptyItemOrNull() {
         List<TCCollageItem> list = getEmptyUUIDCollageItems();
-        return list.size() > 0 ? list.get(0) : null;
+        return list.isEmpty() ? null : list.get(0);
     }
 
 
@@ -137,29 +138,27 @@ public class TCCollage {
     }
 
     private int d() {
-        int i;
-        if (collageItems.size() > 0) {
-            int i2 = 0;
-            int i3 = 1;
-            double z = collageItems.get(0).getRatioMaxBound(this.width, this.height);
-            while (true) {
-                i = i2;
-                if (i3 >= collageItems.size()) {
-                    break;
-                }
-                double a = collageItems.get(i3).getRatioMaxBound(this.width, this.height);
-                double z2 = z;
-                if (a > z) {
-                    z2 = a;
-                    i2 = i3;
-                }
-                i3++;
-                z = z2;
+        if (collageItems.isEmpty()) return -1;
+        int result;
+
+        int i2 = 0;
+        int i3 = 1;
+        double z = collageItems.get(0).getRatioMaxBound(this.width, this.height);
+        while (true) {
+            result = i2;
+            if (i3 >= collageItems.size()) {
+                break;
             }
-        } else {
-            i = -1;
+            double a = collageItems.get(i3).getRatioMaxBound(this.width, this.height);
+            double z2 = z;
+            if (a > z) {
+                z2 = a;
+                i2 = i3;
+            }
+            i3++;
+            z = z2;
         }
-        return i;
+        return result;
     }
 
     private TCRect a(int i) {

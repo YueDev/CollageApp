@@ -13,6 +13,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.PathInterpolator;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
@@ -114,6 +115,10 @@ public class XCollageView extends View {
         mBitmapPaint.setFilterBitmap(true);
 
         mAnimator.setDuration(1000L);
+
+        //   一个ios的隐藏动画曲线
+        //   (0, -0.106),  (0.333, 1.313),  (0.667, 0.909),  (1, 1)
+//        mAnimator.setInterpolator(new PathInterpolator(0.333f, 1.0f, 0.667f, 0.909f));
         mAnimator.addUpdateListener(animation -> {
             float progress = animation.getAnimatedFraction();
             for (XBitmap xBitmap : mXBitmaps) {
