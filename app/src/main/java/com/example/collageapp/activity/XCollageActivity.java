@@ -14,6 +14,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.WorkerThread;
 import androidx.core.view.ViewCompat;
 import androidx.lifecycle.ViewModelProvider;
@@ -163,6 +164,14 @@ public class XCollageActivity extends BaseActivity {
         initView();
         initViewModel();
         initClick();
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                XCollageActivity.this.handleOnBackPressed();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
 
 //        loadImage(mUriList, 0, mUriList.size());
     }
@@ -360,8 +369,7 @@ public class XCollageActivity extends BaseActivity {
     }
 
 
-    @Override
-    public void onBackPressed() {
+    private void handleOnBackPressed() {
         if (mLoadingView.getVisibility() == View.VISIBLE) return;
         if (mCollageButtonView.tryHiddenRatio()) return;
         if (mCloseDialogButton.getVisibility() == View.VISIBLE) {

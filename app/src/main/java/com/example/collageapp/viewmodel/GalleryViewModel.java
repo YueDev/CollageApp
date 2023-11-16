@@ -227,7 +227,7 @@ public class GalleryViewModel extends ViewModel {
         mSelectMap.clear();
 
         List<AlbumBean> albumBeans = mAlbumBeans.getValue();
-        if (albumBeans == null || albumBeans.size() == 0) return;
+        if (albumBeans == null || albumBeans.isEmpty()) return;
         changeAlbum(contentResolver, albumBeans.get(0));
     }
 }

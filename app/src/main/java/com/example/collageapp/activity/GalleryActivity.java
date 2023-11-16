@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.lifecycle.ViewModelProvider;
@@ -99,7 +100,7 @@ public class GalleryActivity extends BaseActivity {
         Intent intent = result.getData();
         if (intent == null) return;
         List<Uri> uriList = intent.getParcelableArrayListExtra(XCollageActivity.KEY_RETURN_URIS);
-        if (uriList == null || uriList.size() == 0) {
+        if (uriList == null || uriList.isEmpty()) {
             mViewModel.reset(getContentResolver());
         }
 
@@ -145,6 +146,15 @@ public class GalleryActivity extends BaseActivity {
             initView();
             initObserver();
         });
+
+        // 新的返回api，兼容预测性返回手势
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                GalleryActivity.this.handleOnBackPressed();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
 
     }
 
@@ -321,12 +331,9 @@ public class GalleryActivity extends BaseActivity {
     }
 
 
-    @Override
-    public void onBackPressed() {
-        if (mAlbumView.isNeedHidden()) {
-            mAlbumView.hidden();
-            return;
-        }
-        super.onBackPressed();
+
+    private void handleOnBackPressed() {
+        if (mAlbumView.isNeedHidden()) mAlbumView.hidden();
     }
+
 }
