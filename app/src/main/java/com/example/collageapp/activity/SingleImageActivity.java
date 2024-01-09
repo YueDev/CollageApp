@@ -2,18 +2,22 @@ package com.example.collageapp.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.NinePatchDrawable;
 import android.net.Uri;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.collageapp.R;
 import com.example.collageapp.adapter.SimpleImageAdapter;
-import com.example.collageapp.adapter.SimpleImageHolder;
+import com.example.collageapp.util.ImageUtil;
+import com.example.collageapp.view.NinePatchView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +39,7 @@ public class SingleImageActivity extends BaseActivity {
     private RecyclerView mRecyclerView;
     private SimpleImageAdapter mAdapter;
     private List<Integer> mResList;
+    private NinePatchView mNinePatchView;
 
     public static void startNewInstance(Context context, Uri uri) {
         Intent intent = new Intent(context, SingleImageActivity.class).setAction(ACTION_START_NEW_INSTANCE);
@@ -73,11 +78,23 @@ public class SingleImageActivity extends BaseActivity {
 
         //点9的资源list
         mResList = new ArrayList<>();
-        mResList.add(R.drawable.test_22);
-        mResList.add(R.drawable.test_24);
-        mResList.add(R.drawable.test_25);
-        mResList.add(R.drawable.test_27);
-        mResList.add(R.drawable.test_28);
+        mResList.add(R.drawable.test_39);
+        mResList.add(R.drawable.test_39_small);
+        mResList.add(R.drawable.test_40);
+        mResList.add(R.drawable.test_40_small);
+        mResList.add(R.drawable.test_41);
+        mResList.add(R.drawable.test_41_small);
+        mResList.add(R.drawable.test_42);
+        mResList.add(R.drawable.test_42_small);
+        mResList.add(R.drawable.test_43);
+        mResList.add(R.drawable.test_43_small);
+        mResList.add(R.drawable.test_44);
+        mResList.add(R.drawable.test_44_small);
+        mResList.add(R.drawable.test_45);
+        mResList.add(R.drawable.test_45_small);
+        mResList.add(R.drawable.test_46);
+        mResList.add(R.drawable.test_46_small);
+
 
 
         initView();
@@ -88,18 +105,13 @@ public class SingleImageActivity extends BaseActivity {
     }
 
 
-
     private void initView() {
+        mNinePatchView = findViewById(R.id.view_nine_patch);
         mLoadingView = findViewById(R.id.view_loading);
         mRecyclerView = findViewById(R.id.recycler_view_image);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
 
-        mAdapter = new SimpleImageAdapter((position, imageResId) -> {
-            findViewById(R.id.image_view_test).setForeground(ResourcesCompat.getDrawable(getResources(), imageResId, null));
-            return Unit.INSTANCE;
-        });
-        mRecyclerView.setAdapter(mAdapter);
-        mAdapter.submitList(mResList);
+
     }
 
 
@@ -111,10 +123,33 @@ public class SingleImageActivity extends BaseActivity {
 
     }
 
+    private void loadDone(Bitmap bitmap) {
+        mNinePatchView.setBitmap(bitmap);
+
+        mAdapter = new SimpleImageAdapter((position, imageResId) -> {
+            Drawable drawable = ResourcesCompat.getDrawable(getResources(), imageResId, null);
+            if (drawable != null) {
+                mNinePatchView.setNinePatch((NinePatchDrawable) drawable);
+            }
+            return Unit.INSTANCE;
+        });
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.submitList(mResList);
+    }
 
     private void loadData() {
-        mLoadingView.setVisibility(View.GONE);
+        ImageUtil.loadBitmapFromGlide(this, mUri, 1024, 1024, new ImageUtil.SimpleGlideListener() {
+            @Override
+            public void onSuccess(Bitmap bitmap) {
+                loadDone(bitmap);
+                mLoadingView.setVisibility(View.GONE);
+            }
 
+            @Override
+            public void onError(String errorMessage) {
+                errorFinish(errorMessage);
+            }
+        });
     }
 
 

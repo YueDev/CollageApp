@@ -2,7 +2,11 @@ package com.example.collageapp.util;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Rect;
+import android.graphics.drawable.NinePatchDrawable;
 import android.net.Uri;
 
 import androidx.annotation.Nullable;
@@ -17,6 +21,8 @@ import com.bumptech.glide.request.FutureTarget;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
+import java.io.InputStream;
+
 /**
  * Created by Yue on 2022/10/25.
  */
@@ -25,7 +31,6 @@ public class ImageUtil {
     public static int sMaxNum = 120;
 
     public static int sScreenSize = 720;
-
 
 
     public static int getImageSize(Application app, int imageNum) {
@@ -85,7 +90,8 @@ public class ImageUtil {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
                         Exception exception = e;
-                        if (exception == null) exception = new Exception("Glide onLoadFailed! unknown error!");
+                        if (exception == null)
+                            exception = new Exception("Glide onLoadFailed! unknown error!");
                         exception.printStackTrace();
                         listener.onError(exception.getMessage());
                         return false;
@@ -118,7 +124,8 @@ public class ImageUtil {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
                         Exception exception = e;
-                        if (exception == null) exception = new Exception("Glide onLoadFailed! unknown error!");
+                        if (exception == null)
+                            exception = new Exception("Glide onLoadFailed! unknown error!");
                         exception.printStackTrace();
                         listener.onError(exception.getMessage());
                         return false;
@@ -137,6 +144,7 @@ public class ImageUtil {
                 })
                 .preload(width, height);
     }
+
 
 
     public interface SimpleGlideListener {

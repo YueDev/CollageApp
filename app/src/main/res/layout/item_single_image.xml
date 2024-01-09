@@ -3,6 +3,7 @@
     android:layout_width="64dp"
     android:layout_height="64dp"
     android:layout_margin="16dp"
+    android:background="#CCCCCC"
     >
 
     <ImageView
