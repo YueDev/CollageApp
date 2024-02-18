@@ -55,4 +55,16 @@ public class SizeUtil {
       }
    }
 
+   public static int getGalleryDiallogPicNumPerColumn(WindowSizeClass sizeClass) {
+      switch (sizeClass) {
+          case COMPACT:
+              return 4;
+          case MEDIUM:
+              return 6;
+          case EXPANDED:
+              return 8;
+      }
+      return 4;
+   }
+
 }

@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.collageapp.R;
 import com.example.collageapp.adapter.GalleryManagerAdapter;
 import com.example.collageapp.util.SizeUtil;
+import com.example.collageapp.util.WindowSizeClass;
 import com.example.collageapp.viewmodel.GalleryViewModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -40,6 +41,9 @@ public class GalleryManagerDialogFragment extends BottomSheetDialogFragment {
     public static final String TAG = "TAG_GALLERY_MANAGER_DIALOG_FRAGMENT";
 
     private GalleryViewModel mViewModel;
+
+    private WindowSizeClass mWidthWindowSizeClass = WindowSizeClass.COMPACT;
+
 
     public GalleryManagerDialogFragment() {
 
@@ -88,8 +92,16 @@ public class GalleryManagerDialogFragment extends BottomSheetDialogFragment {
         View okView = view.findViewById(R.id.image_view_ok);
         okView.setOnClickListener(v -> cancel());
 
+        view.post(() -> {
+            mWidthWindowSizeClass = SizeUtil.computeWindowSizeClasses(view.getMeasuredWidth());
+            initView(view);
+        });
 
-//        View deleteView = view.findViewById(R.id.image_view_delete);
+
+    }
+
+    private void initView(View view) {
+        //        View deleteView = view.findViewById(R.id.image_view_delete);
 //        deleteView.setOnClickListener(v -> {
 //            mViewModel.deleteAll();
 //            cancel();
@@ -98,7 +110,9 @@ public class GalleryManagerDialogFragment extends BottomSheetDialogFragment {
         TextView numText = view.findViewById(R.id.text_view_num);
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view_image);
-        recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 4));
+        int num = SizeUtil.getGalleryDiallogPicNumPerColumn(mWidthWindowSizeClass);
+
+        recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), num));
 
         GalleryManagerAdapter adapter = new GalleryManagerAdapter();
         recyclerView.setAdapter(adapter);
@@ -113,7 +127,6 @@ public class GalleryManagerDialogFragment extends BottomSheetDialogFragment {
             List<Uri> newUris = new ArrayList<>(uris);
             adapter.submitList(newUris);
         });
-
 
     }
 

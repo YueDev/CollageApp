@@ -168,9 +168,9 @@ public class GalleryActivity extends BaseActivity {
         mGalleryRecyclerView = findViewById(R.id.recycler_view_gallery);
         int spanCount = 3 ;
         if (mWidthWindowSizeClass == WindowSizeClass.MEDIUM) {
-            spanCount = 4;
-        } else if (mWidthWindowSizeClass == WindowSizeClass.EXPANDED) {
             spanCount = 5;
+        } else if (mWidthWindowSizeClass == WindowSizeClass.EXPANDED) {
+            spanCount = 7;
         }
         mGalleryRecyclerView.setLayoutManager(new GridLayoutManager(this, spanCount));
         mGalleryRecyclerView.setHasFixedSize(true);
@@ -333,7 +333,10 @@ public class GalleryActivity extends BaseActivity {
 
 
     private void handleOnBackPressed() {
-        if (mAlbumView.isNeedHidden()) mAlbumView.hidden();
+        if (mAlbumView.isNeedHidden())
+            mAlbumView.hidden();
+        else
+            finish();
     }
 
 }

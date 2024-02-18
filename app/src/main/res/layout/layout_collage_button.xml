@@ -68,10 +68,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#EDEDED"
-        android:orientation="vertical"
         android:gravity="bottom|center_horizontal"
-        android:visibility="invisible"
-        >
+        android:orientation="vertical"
+        android:visibility="invisible">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_ratio"
@@ -83,10 +82,9 @@
             android:id="@+id/image_view_ratio_ok"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/icon_ratio_ok"
             android:layout_marginBottom="20dp"
-            />
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_ratio_ok" />
 
     </LinearLayout>
 

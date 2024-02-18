@@ -29,6 +29,8 @@ import com.example.collageapp.fragment.RatioDialogFragment;
 import com.example.collageapp.fragment.SaveDialogFragment;
 import com.example.collageapp.util.ImageUtil;
 import com.example.collageapp.util.PermissionUtil;
+import com.example.collageapp.util.SizeUtil;
+import com.example.collageapp.util.WindowSizeClass;
 import com.example.collageapp.view.CollageButtonView;
 import com.example.collageapp.view.LoadingLayout;
 import com.example.collageapp.viewmodel.ProViewModel;
@@ -86,6 +88,7 @@ public class XCollageActivity extends BaseActivity {
 
     private boolean mIsAboveQ = false;
 
+    //宽度size
 
     public static void startNewInstance(Context context, Collection<Uri> imageUris) {
         Intent intent = new Intent(context, XCollageActivity.class);
@@ -118,6 +121,7 @@ public class XCollageActivity extends BaseActivity {
 
     @Override
     protected void create() {
+
         mIsAboveQ = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q;
 
         Intent intent = getIntent();

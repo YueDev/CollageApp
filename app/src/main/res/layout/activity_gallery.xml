@@ -28,7 +28,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginStart="25dp"
-            android:layout_marginBottom="55dp"
+            android:layout_marginBottom="25dp"
             android:background="@drawable/icon_image_view_num"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +56,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginEnd="25dp"
-            android:layout_marginBottom="55dp"
+            android:layout_marginBottom="25dp"
             android:scaleType="centerCrop"
             android:src="@drawable/icon_gallery_next_unuse"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -67,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="75dp" />
+            app:layout_constraintGuide_begin="50dp" />
 
         <com.example.collageapp.view.AlbumView
             android:id="@+id/view_album"

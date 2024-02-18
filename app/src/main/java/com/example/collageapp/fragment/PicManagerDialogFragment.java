@@ -28,6 +28,8 @@ import com.example.collageapp.activity.PicEditActivity;
 import com.example.collageapp.adapter.PicManagerAdapter;
 import com.example.collageapp.bean.PicManagerBean;
 import com.example.collageapp.util.ImageUtil;
+import com.example.collageapp.util.SizeUtil;
+import com.example.collageapp.util.WindowSizeClass;
 import com.example.collageapp.viewmodel.PicManagerViewModel;
 import com.example.collageapp.viewmodel.XCollageViewModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -56,6 +58,8 @@ public class PicManagerDialogFragment extends BottomSheetDialogFragment {
     private static final String KEY = "KEY_PIC_MANAGER_DIALOG_URI_LIST";
 
     private List<Uri> mUris;
+
+    private WindowSizeClass mWidthWindowSizeClass = WindowSizeClass.COMPACT;
 
     public PicManagerDialogFragment() {
 
@@ -134,20 +138,26 @@ public class PicManagerDialogFragment extends BottomSheetDialogFragment {
         if (mUris == null || mUris.size() == 0) return;
         mViewModel.init(mUris);
 
+        view.post(() -> {
+            mWidthWindowSizeClass = SizeUtil.computeWindowSizeClasses(view.getMeasuredWidth());
+            initView(view);
+        });
+
+
+
+    }
+
+    private void initView(View view) {
+
         View okView = view.findViewById(R.id.image_view_ok);
         okView.setOnClickListener(v -> cancel());
-
-
-//        View deleteView = view.findViewById(R.id.image_view_delete);
-//        deleteView.setOnClickListener(v -> {
-//            mViewModel.deleteAll();
-//        });
 
         TextView numText = view.findViewById(R.id.text_view_num);
         TextView textView2 = view.findViewById(R.id.text_view_2);
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view_image);
-        recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 4));
+        int num = SizeUtil.getGalleryDiallogPicNumPerColumn(mWidthWindowSizeClass);
+        recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), num));
 
         PicManagerAdapter adapter = new PicManagerAdapter();
         recyclerView.setAdapter(adapter);
@@ -203,8 +213,8 @@ public class PicManagerDialogFragment extends BottomSheetDialogFragment {
                 mActivityViewModel.changeUris(mViewModel.getPicManagerBeans().getValue());
             });
         }
-
     }
+
 
 
     private void cancel() {
