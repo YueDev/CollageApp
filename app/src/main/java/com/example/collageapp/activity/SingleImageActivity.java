@@ -78,23 +78,12 @@ public class SingleImageActivity extends BaseActivity {
 
         //点9的资源list
         mResList = new ArrayList<>();
-        mResList.add(R.drawable.test_39);
-        mResList.add(R.drawable.test_39_small);
-        mResList.add(R.drawable.test_40);
-        mResList.add(R.drawable.test_40_small);
-        mResList.add(R.drawable.test_41);
-        mResList.add(R.drawable.test_41_small);
-        mResList.add(R.drawable.test_42);
-        mResList.add(R.drawable.test_42_small);
-        mResList.add(R.drawable.test_43);
-        mResList.add(R.drawable.test_43_small);
-        mResList.add(R.drawable.test_44);
-        mResList.add(R.drawable.test_44_small);
-        mResList.add(R.drawable.test_45);
-        mResList.add(R.drawable.test_45_small);
-        mResList.add(R.drawable.test_46);
-        mResList.add(R.drawable.test_46_small);
-
+        mResList.add(R.drawable.test_65);
+        mResList.add(R.drawable.test_65_small);
+        mResList.add(R.drawable.test_66);
+        mResList.add(R.drawable.test_66_small);
+        mResList.add(R.drawable.test_67);
+        mResList.add(R.drawable.test_67_small);
 
 
         initView();
