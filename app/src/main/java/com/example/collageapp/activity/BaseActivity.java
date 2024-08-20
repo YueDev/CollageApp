@@ -1,9 +1,11 @@
 package com.example.collageapp.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
@@ -24,17 +26,17 @@ public abstract class BaseActivity extends AppCompatActivity {
 //        getWindow().setNavigationBarColor(Color.TRANSPARENT);
 
         //全屏显示 让应用内容可以绘制到状态栏
-        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+//        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 
         //状态栏的icon颜色 从theme.xml指定了 xml里的windowLightStatusBar
 //        WindowInsetsControllerCompat insetsController = WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());
 //        insetsController.setAppearanceLightStatusBars(false);
 
 
+        //开启边对边 上边那些应该都不用写了
+        EdgeToEdge.enable(this);
         setContentView(setLayoutResId());
-
         applyInsets(setContentIdRes());
-
         create();
     }
 
@@ -43,10 +45,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         View layout = findViewById(viewId);
         if (layout != null) {
             ViewCompat.setOnApplyWindowInsetsListener(layout, (v, windowInsets) -> {
-                //这里mask 用displayCutout和systemBars，这样系统的导航栏和缺角屏的距离都能判断到了
-                Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
+                Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
                 ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
-
                 mlp.leftMargin = insets.left;
                 mlp.topMargin = insets.top;
                 mlp.rightMargin = insets.right;

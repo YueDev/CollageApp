@@ -13,6 +13,7 @@ glide = "4.16.0"
 scrollpicker = "1.0.11"
 permissionx = "1.7.1"
 lottie = "6.1.0"
+activity = "1.9.1"
 
 
 [libraries]
@@ -29,6 +30,7 @@ glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "gl
 scrollpicker = { group = "cn.simonlee.widget", name = "scrollpicker", version.ref = "scrollpicker" }
 permissionx = { group = "com.guolindev.permissionx", name = "permissionx", version.ref = "permissionx" }
 lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

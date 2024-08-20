@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.scrollpicker)
     implementation(libs.permissionx)
     implementation(libs.lottie)
+    implementation(libs.androidx.activity)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

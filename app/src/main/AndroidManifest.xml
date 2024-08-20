@@ -11,14 +11,13 @@
         <package android:name="com.google.android.gm" />
     </queries>
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32"
-        />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -29,7 +28,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.XCollage">
-
+        <activity
+            android:name=".activity.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.TestActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.HomeActivity"
             android:exported="true">
@@ -39,48 +43,43 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.GalleryActivity"
             android:exported="false" />
-
         <activity
             android:name=".activity.SingleImageActivity"
             android:exported="false" />
-
         <activity
             android:name=".activity.XCollageActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="image/*" />
             </intent-filter>
-
             <intent-filter>
                 <action android:name="android.intent.action.SEND_MULTIPLE" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="image/*" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.SaveActivity"
             android:exported="false" />
-
         <activity
             android:name=".activity.PicEditActivity"
             android:exported="false" />
-
         <activity
             android:name=".activity.SettingActivity"
             android:exported="false" />
-
         <activity
             android:name=".activity.FeedbackActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
-
     </application>
 
 </manifest>
