@@ -54,7 +54,7 @@ public class SingleImageActivity extends BaseActivity {
 
     @Override
     protected int setContentIdRes() {
-        return 0;
+        return R.id.layout_root;
     }
 
 
@@ -78,12 +78,12 @@ public class SingleImageActivity extends BaseActivity {
 
         //点9的资源list
         mResList = new ArrayList<>();
-        mResList.add(R.drawable.test_76);
-        mResList.add(R.drawable.test_76_small);
-        mResList.add(R.drawable.test_77);
-        mResList.add(R.drawable.test_77_small);
-        mResList.add(R.drawable.test_78);
-        mResList.add(R.drawable.test_78_small);
+        mResList.add(R.drawable.test_3);
+        mResList.add(R.drawable.test_3_small);
+        mResList.add(R.drawable.test_4);
+        mResList.add(R.drawable.test_4_small);
+        mResList.add(R.drawable.test_5);
+        mResList.add(R.drawable.test_5_small);
 
         initView();
         initViewModel();
