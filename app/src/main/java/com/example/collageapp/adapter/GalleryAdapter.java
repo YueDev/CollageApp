@@ -1,6 +1,5 @@
 package com.example.collageapp.adapter;
 
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
 import com.example.collageapp.R;
 import com.example.collageapp.bean.GalleryBean;
 import com.example.collageapp.diff.GalleryBeanDiffCallback;
@@ -58,7 +56,7 @@ public class GalleryAdapter extends ListAdapter<GalleryBean, GalleryAdapter.Gall
         void onClick(GalleryBean bean);
     }
 
-    static class GalleryHolder extends RecyclerView.ViewHolder {
+    public static class GalleryHolder extends RecyclerView.ViewHolder {
 
         private final ImageView mImageView;
         private final TextView mTextView;
