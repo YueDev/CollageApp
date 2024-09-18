@@ -35,8 +35,8 @@ public class TCCollage {
                 if (emptyCollageItem != null) {
                     emptyCollageItem.uuid = uuid;
                 } else {
-                    int d = d();
-                    TCRect tcRect = d < 0 ? new TCRect(0.0d, 0.0d, 1.0d, 1.0d) : a(d);
+                    int index = getMaxBoundIndex();
+                    TCRect tcRect = index < 0 ? new TCRect(0.0d, 0.0d, 1.0d, 1.0d) : getTCRect(index);
                     collageItems.add(new TCCollageItem(uuid, tcRect));
                 }
                 bitmapMap.put(uuid, bitmap);
@@ -137,41 +137,34 @@ public class TCCollage {
         return list;
     }
 
-    private int d() {
+    //寻找collageItems的最大的max bound的index， -1无效
+    private int getMaxBoundIndex() {
         if (collageItems.isEmpty()) return -1;
-        int result;
-
-        int i2 = 0;
-        int i3 = 1;
-        double z = collageItems.get(0).getRatioMaxBound(this.width, this.height);
-        while (true) {
-            result = i2;
-            if (i3 >= collageItems.size()) {
-                break;
+        int maxIndex = 0;
+        double maxBound = -1000;
+        for (int i = 0; i < this.collageItems.size(); i++) {
+            double bound = this.collageItems.get(i).getRatioMaxBound(this.width, this.height);
+            if (bound > maxBound) {
+                maxBound = bound;
+                maxIndex = i;
             }
-            double a = collageItems.get(i3).getRatioMaxBound(this.width, this.height);
-            double z2 = z;
-            if (a > z) {
-                z2 = a;
-                i2 = i3;
-            }
-            i3++;
-            z = z2;
         }
-        return result;
+        return maxIndex;
     }
 
-    private TCRect a(int i) {
+    //根据index获取TCRect
+    private TCRect getTCRect(int i) {
         TCRect tcRect;
         TCCollageItem item = this.collageItems.get(i);
-        double nextInt = 0.4 + (new Random().nextInt(20) / 100.0);
-        TCRect iVar = item.ratioRect;
+        //0.4-0.59之间的随机数
+        double randomNum = 0.4 + (new Random().nextInt(20) / 100.0);
+        TCRect ratioRect = item.ratioRect;
         if (item.ratioRect.right * this.width < item.ratioRect.bottom * this.height) {
-            item.ratioRect = new TCRect(iVar.left, iVar.top, iVar.right, iVar.bottom * nextInt);
-            tcRect = new TCRect(iVar.left, iVar.top + (iVar.bottom * nextInt), iVar.right, (1.0 - nextInt) * iVar.bottom);
+            item.ratioRect = new TCRect(ratioRect.left, ratioRect.top, ratioRect.right, ratioRect.bottom * randomNum);
+            tcRect = new TCRect(ratioRect.left, ratioRect.top + (ratioRect.bottom * randomNum), ratioRect.right, (1.0 - randomNum) * ratioRect.bottom);
         } else {
-            item.ratioRect = new TCRect(iVar.left, iVar.top, iVar.right * nextInt, iVar.bottom);
-            tcRect = new TCRect(iVar.left + (iVar.right * nextInt), iVar.top, (1.00 - nextInt) * iVar.right, iVar.bottom);
+            item.ratioRect = new TCRect(ratioRect.left, ratioRect.top, ratioRect.right * randomNum, ratioRect.bottom);
+            tcRect = new TCRect(ratioRect.left + (ratioRect.right * randomNum), ratioRect.top, (1.0 - randomNum) * ratioRect.right, ratioRect.bottom);
         }
         return tcRect;
     }
