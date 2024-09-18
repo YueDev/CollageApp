@@ -9,17 +9,17 @@ import java.util.Set;
 
 public class TCShuffle {
 
-    TCShuffle s1;
-    TCShuffle s2;
-    TCShuffle s3;
+    TCShuffle mShuffle1;
+    TCShuffle mShuffle2;
+    TCShuffle mShuffle3;
 
-    String uuid;
-    double ratio;
-    TCJoin tcJoin;
+    String mUUIDString;
+    double mRatio;
+    TCJoin mTCJoin;
 
     private double a(double d, double d2) {
-        List<TCCollageItem> arrayList = new ArrayList<>(b());
-        a(arrayList, new TCRect(0.0, 0.0, 1.0, 1.0));
+        List<TCCollageItem> arrayList = new ArrayList<>(getCount());
+        refreshList(arrayList, new TCRect(0.0, 0.0, 1.0, 1.0));
 
         double result = 4726483295817170944.0;
 
@@ -38,18 +38,18 @@ public class TCShuffle {
             result = shuffleList.get(0);
         } else {
             TCShuffle s = new TCShuffle();
-            s.tcJoin = TCJoin.TCLeftRightJoin;
+            s.mTCJoin = TCJoin.TCLeftRightJoin;
             TCShuffle shuffle1 = linkAllShuffles(shuffleList.subList(0, (shuffleList.size() / 2)), s);
             TCShuffle shuffle2 = linkAllShuffles(shuffleList.subList(shuffleList.size() / 2, shuffleList.size()), s);
-            s.s1 = shuffle1;
-            s.s2 = shuffle2;
+            s.mShuffle1 = shuffle1;
+            s.mShuffle2 = shuffle2;
             result = s;
         }
-        result.s3 = noUse;
+        result.mShuffle3 = noUse;
         return result;
     }
 
-
+    //根据ratioMap获取Shuffle
     private static TCShuffle getTotalShuffle(Map<String, Double> ratioMap) {
         TCShuffle shuffle;
         if (ratioMap.isEmpty()) {
@@ -62,7 +62,7 @@ public class TCShuffle {
             for (String uuid : randomKeyList) {
                 Double ratio = ratioMap.get(uuid);
                 TCShuffle s = new TCShuffle();
-                s.uuid = uuid;
+                s.mUUIDString = uuid;
                 s.setRatio(ratio == null ? 1.0 : ratio);
                 shuffleList.add(s);
             }
@@ -71,135 +71,145 @@ public class TCShuffle {
         return shuffle;
     }
 
-
+    //根据ratioMap， width和height 获得Shuffle
     public static TCShuffle getTotalShuffle(Map<String, Double> ratioMap, double width, double height) {
         if (ratioMap.isEmpty()) return null;
 
         TCShuffle result;
         double canvasRatio = width / height;
-        TCShuffle a = getTotalShuffle(ratioMap);
-        a.b(canvasRatio);
+        TCShuffle shuffle = getTotalShuffle(ratioMap);
+        shuffle.refreshJoinType(canvasRatio);
         int i = 0;
         TCShuffle dVar = null;
         double r17 = 0;
         while (i < 500) {
             double z = r17;
             TCShuffle dVar2 = dVar;
-            if (Math.abs(a.a() - canvasRatio) < 0.01d) {
+            if (Math.abs(shuffle.getTotalRatio() - canvasRatio) < 0.01d) {
                 double z2 = r17;
                 if (dVar == null) {
-                    dVar2 = a;
-                    z2 = a.a(width, height);
+                    dVar2 = shuffle;
+                    z2 = shuffle.a(width, height);
                 }
-                double a2 = a.a(width, height);
+                double a2 = shuffle.a(width, height);
                 z = z2;
                 if (a2 > z2) {
                     z = a2;
-                    dVar2 = a;
+                    dVar2 = shuffle;
                 }
             }
             TCShuffle a3 = getTotalShuffle(ratioMap);
-            a3.b(canvasRatio);
-            TCShuffle dVar3 = a;
-            if (Math.abs(a3.a() - canvasRatio) < Math.abs(a.a() - canvasRatio)) {
+            a3.refreshJoinType(canvasRatio);
+            TCShuffle dVar3 = shuffle;
+            if (Math.abs(a3.getTotalRatio() - canvasRatio) < Math.abs(shuffle.getTotalRatio() - canvasRatio)) {
                 dVar3 = a3;
             }
             i++;
             r17 = z;
             dVar = dVar2;
-            a = dVar3;
+            shuffle = dVar3;
         }
         result = dVar;
-        if (result == null) result = a;
+        if (result == null) result = shuffle;
         return result;
     }
 
     private void setRatio(double setRatio) {
-        this.ratio = setRatio;
+        this.mRatio = setRatio;
     }
 
-    private int b() {
-        return this.uuid != null ? 1 : this.s1.b() + this.s2.b();
+    //获取Shuffle的count，uuid为空返回1
+    //其他情况返回s1和s2的count之和
+    private int getCount() {
+        return this.mUUIDString != null ? 1 : this.mShuffle1.getCount() + this.mShuffle2.getCount();
     }
 
-    private void b(double paramDouble) {
-        if (this.uuid == null) {
-            List<TCShuffle> list = TCUtils.randomList(c());
-            for (TCShuffle d1 : list) {
-                double d2 = a();
-                d1.changeJoinType();
-                double d3 = a();
-                if (Math.abs(d3 - paramDouble) >= Math.abs(d2 - paramDouble)) {
-                    d1.changeJoinType();
+    //根据画布比例刷新每一个的shuffle的join type
+    private void refreshJoinType(double canvasRatio) {
+        if (this.mUUIDString == null) {
+            List<TCShuffle> randomList = TCUtils.randomList(getShuffleList());
+            for (TCShuffle shuffle : randomList) {
+                //计算两种方向的ratio，看看哪个更接近canvasRatio
+                double ratio1 = getTotalRatio();
+                shuffle.changeJoinType();
+                double ratio2 = getTotalRatio();
+
+                if (Math.abs(ratio2 - canvasRatio) >= Math.abs(ratio1 - canvasRatio)) {
+                    shuffle.changeJoinType();
                 }
-                if (Math.abs(d3 - paramDouble) < 0.01D) {
+                //误差很小 直接返回即可
+                if (Math.abs(ratio2 - canvasRatio) < 0.01) {
                     return;
                 }
             }
         }
     }
 
-    private List<TCShuffle> c() {
-        List<TCShuffle> list;
-        if (this.uuid != null) {
-            list = new ArrayList<>();
-        } else {
-            List<TCShuffle> c = this.s1.c();
-            List<TCShuffle> c2 = this.s2.c();
-            list = new ArrayList<>(c.size() + c2.size() + 1);
-            list.addAll(c);
-            list.add(this);
-            list.addAll(c2);
+    //将shuffle展平
+    private List<TCShuffle> getShuffleList() {
+        List<TCShuffle> result = new ArrayList<>();
+        if (this.mUUIDString != null) {
+            return result;
         }
-        return list;
-    }
 
-    private void changeJoinType() {
-        if (this.tcJoin == TCJoin.TCLeftRightJoin) {
-            this.tcJoin = TCJoin.TCUpDownJoin;
-        } else {
-            this.tcJoin = TCJoin.TCLeftRightJoin;
-        }
-    }
-
-    public double a() {
-        if (uuid != null) return ratio;
-
-        double result;
-        double a = this.s1.a();
-        double a2 = this.s2.a();
-        result = (this.tcJoin == TCJoin.TCLeftRightJoin) ? (a + a2) : (1.0d / ((1.0d / a) + (1.0d / a2)));
+        List<TCShuffle> shuffle1ShuffleList = this.mShuffle1.getShuffleList();
+        List<TCShuffle> shuffle2ShuffleList = this.mShuffle2.getShuffleList();
+        result.addAll(shuffle1ShuffleList);
+        result.add(this);
+        result.addAll(shuffle2ShuffleList);
         return result;
     }
 
-    public void a(List<TCCollageItem> list, TCRect iVar) {
-        TCRect iVar2;
-        TCRect iVar3;
+    private void changeJoinType() {
+        if (mTCJoin == TCJoin.TCLeftRightJoin) {
+            mTCJoin = TCJoin.TCUpDownJoin;
+        } else {
+            mTCJoin = TCJoin.TCLeftRightJoin;
+        }
+    }
+
+    //获取所有的ratio之和
+    //如果uuid为空，返回ratio，否则返回s1和s2的ratio和
+    public double getTotalRatio() {
+        if (mUUIDString != null) return mRatio;
+        double result;
+        double ratio1 = this.mShuffle1.getTotalRatio();
+        double ratio2 = this.mShuffle2.getTotalRatio();
+        result = (this.mTCJoin == TCJoin.TCLeftRightJoin) ? (ratio1 + ratio2) : (1.0 / ((1.0 / ratio1) + (1.0 / ratio2)));
+        return result;
+    }
+
+    //将计算的拼图结果放入list
+    public void refreshList(List<TCCollageItem> list, TCRect bound) {
         if (list == null) return;
-        if (this.uuid != null) {
-            list.add(new TCCollageItem(this.uuid, iVar));
+        if (this.mUUIDString != null) {
+            list.add(new TCCollageItem(this.mUUIDString, bound));
             return;
         }
-        double a = this.s1.a();
-        double a2 = this.s2.a();
-        if (this.tcJoin == TCJoin.TCLeftRightJoin) {
+
+        TCRect s1Bound;
+        TCRect s2Bound;
+        double totalRatio1 = this.mShuffle1.getTotalRatio();
+        double totalRatio2 = this.mShuffle2.getTotalRatio();
+        if (this.mTCJoin == TCJoin.TCLeftRightJoin) {
             if (TCUtils.randomBoolean()) {
-                TCRect iVar4 = new TCRect(iVar.left, iVar.top, iVar.right * (a / (a2 + a)), iVar.bottom);
-                iVar2 = new TCRect(iVar.left + iVar4.right, iVar.top, iVar.right - iVar4.right, iVar.bottom);
-                iVar3 = iVar4;
+                s1Bound = new TCRect(bound.left, bound.top, bound.right * (totalRatio1 / (totalRatio2 + totalRatio1)), bound.bottom);
+                s2Bound = new TCRect(bound.left + s1Bound.right, bound.top, bound.right - s1Bound.right, bound.bottom);
             } else {
-                iVar2 = new TCRect(iVar.left, iVar.top, iVar.right * (a2 / (a + a2)), iVar.bottom);
-                iVar3 = new TCRect(iVar.left + iVar2.right, iVar.top, iVar.right - iVar2.right, iVar.bottom);
+                s2Bound = new TCRect(bound.left, bound.top, bound.right * (totalRatio2 / (totalRatio1 + totalRatio2)), bound.bottom);
+                s1Bound = new TCRect(bound.left + s2Bound.right, bound.top, bound.right - s2Bound.right, bound.bottom);
             }
-        } else if (TCUtils.randomBoolean()) {
-            TCRect iVar5 = new TCRect(iVar.left, iVar.top, iVar.right, ((1.0 / a) / ((1.0 / a) + (1.0 / a2))) * iVar.bottom);
-            iVar2 = new TCRect(iVar.left, iVar.top + iVar5.bottom, iVar.right, iVar.bottom - iVar5.bottom);
-            iVar3 = iVar5;
         } else {
-            iVar2 = new TCRect(iVar.left, iVar.top, iVar.right, ((1.0 / a2) / ((1.0 / a) + (1.0 / a2))) * iVar.bottom);
-            iVar3 = new TCRect(iVar.left, iVar.top + iVar2.bottom, iVar.right, iVar.bottom - iVar2.bottom);
+            if (TCUtils.randomBoolean()) {
+                s1Bound = new TCRect(bound.left, bound.top, bound.right, ((1.0 / totalRatio1) / ((1.0 / totalRatio1) + (1.0 / totalRatio2))) * bound.bottom);
+                s2Bound = new TCRect(bound.left, bound.top + s1Bound.bottom, bound.right, bound.bottom - s1Bound.bottom);
+            } else {
+                s2Bound = new TCRect(bound.left, bound.top, bound.right, ((1.0 / totalRatio2) / ((1.0 / totalRatio1) + (1.0 / totalRatio2))) * bound.bottom);
+                s1Bound = new TCRect(bound.left, bound.top + s2Bound.bottom, bound.right, bound.bottom - s2Bound.bottom);
+            }
         }
-        this.s1.a(list, iVar3);
-        this.s2.a(list, iVar2);
+
+        mShuffle1.refreshList(list, s1Bound);
+        mShuffle2.refreshList(list, s2Bound);
     }
 }

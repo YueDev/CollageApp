@@ -115,7 +115,7 @@ public class TCCollage {
             //这个返回这个结果，就是计算的质量Math.abs(totalShuffle.a() - ((this.width) / this.height)) < 0.01d;
             //一般来说 几张图计算出来 留白比较多，这个值就是false
             if (totalShuffle != null) {
-                totalShuffle.a(this.collageItems, new TCRect(0.0, 0.0, 1.0, 1.0));
+                totalShuffle.refreshList(this.collageItems, new TCRect(0.0, 0.0, 1.0, 1.0));
             }
         }
     }
