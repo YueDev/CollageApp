@@ -89,12 +89,12 @@ public class TCCollage {
 
 
     TCRect getItemInCanvasRect(TCCollageItem collageItem, double frame, double width, double height) {
-        double c = collageItem.ratioRect.left < 1.0E-4d ? 2.0d * frame : frame;
-        double c2 = collageItem.ratioRect.left + collageItem.ratioRect.right > 0.9999d ? 2.0d * frame : frame;
-        double c3 = collageItem.ratioRect.top < 1.0E-4d ? 2.0d * frame : frame;
+        double c = collageItem.ratioRect.left <= 0 ? 2 * frame : frame;
+        double c2 = collageItem.ratioRect.left + collageItem.ratioRect.right >= 1.0 ? 2 * frame : frame;
+        double c3 = collageItem.ratioRect.top <= 0 ? 2 * frame : frame;
         double c4 = frame;
-        if (collageItem.ratioRect.top + collageItem.ratioRect.bottom > 0.9999d) {
-            c4 = frame * 2.0d;
+        if (collageItem.ratioRect.top + collageItem.ratioRect.bottom >= 1.0) {
+            c4 = frame * 2;
         }
         return new TCRect((collageItem.ratioRect.left * width) + c, (collageItem.ratioRect.top * height) + c3, (collageItem.ratioRect.right * width) - (c + c2), (collageItem.ratioRect.bottom * height) - (c3 + c4));
     }
@@ -103,7 +103,7 @@ public class TCCollage {
     private void reCollage() {
         this.collageItems.clear();
         if (bitmapMap.isEmpty()) {
-            collageItems.add(new TCCollageItem(null, new TCRect(0.0d, 0.0d, 1.0d, 1.0d)));
+            collageItems.add(new TCCollageItem(null, new TCRect(0.0, 0.0, 1.0, 1.0)));
         } else {
             HashMap<String, Double> ratioMap = new HashMap<>();
             for (Map.Entry<String, TCBitmap> entry : bitmapMap.entrySet()) {
@@ -115,7 +115,7 @@ public class TCCollage {
             //这个返回这个结果，就是计算的质量Math.abs(totalShuffle.a() - ((this.width) / this.height)) < 0.01d;
             //一般来说 几张图计算出来 留白比较多，这个值就是false
             if (totalShuffle != null) {
-                totalShuffle.a(this.collageItems, new TCRect(0.0d, 0.0d, 1.0d, 1.0d));
+                totalShuffle.a(this.collageItems, new TCRect(0.0, 0.0, 1.0, 1.0));
             }
         }
     }
@@ -164,7 +164,7 @@ public class TCCollage {
     private TCRect a(int i) {
         TCRect tcRect;
         TCCollageItem item = this.collageItems.get(i);
-        double nextInt = 0.4d + (new Random().nextInt(20) / 100.0d);
+        double nextInt = 0.4 + (new Random().nextInt(20) / 100.0);
         TCRect iVar = item.ratioRect;
         if (item.ratioRect.right * this.width < item.ratioRect.bottom * this.height) {
             item.ratioRect = new TCRect(iVar.left, iVar.top, iVar.right, iVar.bottom * nextInt);

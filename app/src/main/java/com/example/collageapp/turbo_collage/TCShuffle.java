@@ -19,7 +19,7 @@ public class TCShuffle {
 
     private double a(double d, double d2) {
         List<TCCollageItem> arrayList = new ArrayList<>(b());
-        a(arrayList, new TCRect(0.0d, 0.0d, 1.0d, 1.0d));
+        a(arrayList, new TCRect(0.0, 0.0, 1.0, 1.0));
 
         double result = 4726483295817170944.0;
 
@@ -192,11 +192,11 @@ public class TCShuffle {
                 iVar3 = new TCRect(iVar.left + iVar2.right, iVar.top, iVar.right - iVar2.right, iVar.bottom);
             }
         } else if (TCUtils.randomBoolean()) {
-            TCRect iVar5 = new TCRect(iVar.left, iVar.top, iVar.right, ((1.0d / a) / ((1.0d / a) + (1.0d / a2))) * iVar.bottom);
+            TCRect iVar5 = new TCRect(iVar.left, iVar.top, iVar.right, ((1.0 / a) / ((1.0 / a) + (1.0 / a2))) * iVar.bottom);
             iVar2 = new TCRect(iVar.left, iVar.top + iVar5.bottom, iVar.right, iVar.bottom - iVar5.bottom);
             iVar3 = iVar5;
         } else {
-            iVar2 = new TCRect(iVar.left, iVar.top, iVar.right, ((1.0d / a2) / ((1.0d / a) + (1.0d / a2))) * iVar.bottom);
+            iVar2 = new TCRect(iVar.left, iVar.top, iVar.right, ((1.0 / a2) / ((1.0 / a) + (1.0 / a2))) * iVar.bottom);
             iVar3 = new TCRect(iVar.left, iVar.top + iVar2.bottom, iVar.right, iVar.bottom - iVar2.bottom);
         }
         this.s1.a(list, iVar3);
