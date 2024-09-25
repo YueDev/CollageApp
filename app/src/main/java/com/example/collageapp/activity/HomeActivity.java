@@ -33,7 +33,7 @@ public class HomeActivity extends BaseActivity {
         ImageView bgImageView = findViewById(R.id.image_view_bg);
 
         Glide.with(this)
-                .load(R.drawable.icon_home_bg_test)
+                .load(R.drawable.home_bg)
                 .into(bgImageView);
     }
 

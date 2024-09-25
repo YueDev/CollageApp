@@ -250,7 +250,7 @@ public class XCollageActivity extends BaseActivity {
         mPicManagerView.setOnClickListener(this::clickPicManager);
 
         mSaveButton.setOnClickListener(this::clickSave);
-        mCloseButton.setOnClickListener(v -> showCloseDialog());
+        mCloseButton.setOnClickListener(this::clickExit);
 
         mCloseDialogButton.setOnClickListener(this::clickExit);
         mCloseDialogBg.setOnClickListener(v -> hiddenCloseDialog());

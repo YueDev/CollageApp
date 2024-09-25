@@ -109,7 +109,7 @@
         android:id="@+id/text_view_path"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="/storage/emulated/0/Pictures/XCollage"
+        android:text="/storage/emulated/0/Pictures/CollageApp"
         android:textColor="#ff495052"
         android:textSize="8sp"
         app:layout_constraintBottom_toTopOf="@+id/text_view_feedback"

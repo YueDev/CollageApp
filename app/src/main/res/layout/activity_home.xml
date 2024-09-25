@@ -14,18 +14,6 @@
         android:scaleType="centerCrop"
         />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/bg_home_up" />
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="bottom"
-        android:background="@drawable/bg_home_down" />
-
     <FrameLayout
         android:id="@+id/content_layout"
         android:layout_width="match_parent"
