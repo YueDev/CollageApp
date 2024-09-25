@@ -96,14 +96,12 @@ public class GalleryActivity extends BaseActivity {
 
     //编辑页面返回
     ActivityResultLauncher<Intent> mXCollageLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-        if (result.getResultCode() != RESULT_OK) return;
-        Intent intent = result.getData();
-        if (intent == null) return;
-        List<Uri> uriList = intent.getParcelableArrayListExtra(XCollageActivity.KEY_RETURN_URIS);
-        if (uriList == null || uriList.isEmpty()) {
-            mViewModel.reset(getContentResolver());
-        }
+//        if (result.getResultCode() != RESULT_OK) return;
+//        Intent intent = result.getData();
+//        if (intent == null) return;
+//        List<Uri> uriList = intent.getParcelableArrayListExtra(XCollageActivity.KEY_RETURN_URIS);
 
+        //暂时不处理返回
     });
 
 
@@ -305,7 +303,7 @@ public class GalleryActivity extends BaseActivity {
     //点击下一步
     private void clickNext(View v) {
         List<Uri> uris = mViewModel.getSelectUris().getValue();
-        if (uris == null || uris.size() == 0) return;
+        if (uris == null || uris.isEmpty()) return;
         if (mIsAdd) {
             Intent intent = new Intent();
             intent.putParcelableArrayListExtra(KEY_RETURN_URIS, new ArrayList<>(uris));

@@ -350,7 +350,7 @@ public class XCollageView extends View {
                 for (XBitmap xBitmap : mXBitmaps) {
                     TCRectF tcRect = result.get(xBitmap.getId());
 
-                    xBitmap.checkBounds(tcRect.left, tcRect.top, tcRect.right, tcRect.bottom, mCollageWidth, mCollageHeight);
+                    xBitmap.checkBounds(tcRect.getLeft(), tcRect.getTop(), tcRect.getRight(), tcRect.getBottom(), mCollageWidth, mCollageHeight);
                     RectF newRect = xBitmap.getRectWithPadding(mOuterPadding, mInnerPadding);
                     xBitmap.getRect().set(newRect);
 
@@ -376,7 +376,7 @@ public class XCollageView extends View {
                 for (XBitmap xBitmap : mXBitmaps) {
                     TCRectF tcRect = result.get(xBitmap.getId());
 
-                    xBitmap.checkBounds(tcRect.left, tcRect.top, tcRect.right, tcRect.bottom, mCollageWidth, mCollageHeight);
+                    xBitmap.checkBounds(tcRect.getLeft(), tcRect.getTop(), tcRect.getRight(), tcRect.getBottom(), mCollageWidth, mCollageHeight);
                     RectF newRect = xBitmap.getRectWithPadding(mOuterPadding, mInnerPadding);
 
                     xBitmap.getOriginRect().offset(mOffsetX, mOffsetY);
@@ -412,7 +412,7 @@ public class XCollageView extends View {
                 for (XBitmap xBitmap : mXBitmaps) {
                     TCRectF tcRect = result.get(xBitmap.getId());
 
-                    xBitmap.checkBounds(tcRect.left, tcRect.top, tcRect.right, tcRect.bottom, mCollageWidth, mCollageHeight);
+                    xBitmap.checkBounds(tcRect.getLeft(), tcRect.getTop(), tcRect.getRight(), tcRect.getBottom(), mCollageWidth, mCollageHeight);
                     RectF newRect = xBitmap.getRectWithPadding(mOuterPadding, mInnerPadding);
 
                     xBitmap.getOriginRect().offset(mOffsetX, mOffsetY);

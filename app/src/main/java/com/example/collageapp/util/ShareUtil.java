@@ -45,11 +45,11 @@ public class ShareUtil {
     public static List<ShareBean> getShareBeans() {
         if (sShareBeans == null) {
             sShareBeans = new ArrayList<>();
-            sShareBeans.add(new ShareBean(ShareType.INSTAGRAM, R.string.share_instagram, R.drawable.icon_share_instagram));
-            sShareBeans.add(new ShareBean(ShareType.WHATSAPP, R.string.share_whatsapp, R.drawable.icon_share_whatsapp));
-            sShareBeans.add(new ShareBean(ShareType.MESSENGER, R.string.share_messenger, R.drawable.icon_share_messenger));
-            sShareBeans.add(new ShareBean(ShareType.FACEBOOK, R.string.share_facebook, R.drawable.icon_share_facebook));
-            sShareBeans.add(new ShareBean(ShareType.MORE, R.string.share_more, R.drawable.icon_share_more));
+//            sShareBeans.add(new ShareBean(ShareType.INSTAGRAM, R.string.share_instagram, R.drawable.icon_share_instagram));
+//            sShareBeans.add(new ShareBean(ShareType.WHATSAPP, R.string.share_whatsapp, R.drawable.icon_share_whatsapp));
+//            sShareBeans.add(new ShareBean(ShareType.MESSENGER, R.string.share_messenger, R.drawable.icon_share_messenger));
+//            sShareBeans.add(new ShareBean(ShareType.FACEBOOK, R.string.share_facebook, R.drawable.icon_share_facebook));
+            sShareBeans.add(new ShareBean(ShareType.MORE, R.string.share, R.drawable.icon_share_more));
             sShareBeans.add(new ShareBean(ShareType.ANOTHER, R.string.share_another, R.drawable.icon_share_another));
             sShareBeans.add(new ShareBean(ShareType.HOME, R.string.share_home, R.drawable.icon_share_home));
         }

@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -29,8 +30,6 @@ import com.example.collageapp.fragment.RatioDialogFragment;
 import com.example.collageapp.fragment.SaveDialogFragment;
 import com.example.collageapp.util.ImageUtil;
 import com.example.collageapp.util.PermissionUtil;
-import com.example.collageapp.util.SizeUtil;
-import com.example.collageapp.util.WindowSizeClass;
 import com.example.collageapp.view.CollageButtonView;
 import com.example.collageapp.view.LoadingLayout;
 import com.example.collageapp.viewmodel.ProViewModel;
@@ -376,11 +375,12 @@ public class XCollageActivity extends BaseActivity {
     private void handleOnBackPressed() {
         if (mLoadingView.getVisibility() == View.VISIBLE) return;
         if (mCollageButtonView.tryHiddenRatio()) return;
-        if (mCloseDialogButton.getVisibility() == View.VISIBLE) {
-            hiddenCloseDialog();
-        } else {
-            showCloseDialog();
-        }
+        clickExit(null);
+//        if (mCloseDialogButton.getVisibility() == View.VISIBLE) {
+//            hiddenCloseDialog();
+//        } else {
+//            showCloseDialog();
+//        }
     }
 
     private void showCloseDialog() {
@@ -444,7 +444,7 @@ public class XCollageActivity extends BaseActivity {
                 int secondNow = calendar.get(Calendar.SECOND);
                 int millisecond = calendar.get(Calendar.MILLISECOND);
 
-                final String fileName = "XCollage_" + yearNow
+                final String fileName = "CollageApp_" + yearNow
                         + monthNow + dayNow
                         + hourNow + minuteNow
                         + secondNow + millisecond;
@@ -477,7 +477,7 @@ public class XCollageActivity extends BaseActivity {
                 File.separator +
                 "Pictures" +
                 File.separator +
-                "XCollage";
+                "CollageApp";
         File dir = new File(dirPath);
         if (!dir.exists()) {
             dir.mkdirs();
@@ -527,8 +527,8 @@ public class XCollageActivity extends BaseActivity {
         values.put(MediaStore.Images.Media.DISPLAY_NAME, name);
         values.put(MediaStore.Images.Media.TITLE, name);
         values.put(MediaStore.MediaColumns.MIME_TYPE, isPNG ? "image/png" : "image/jpeg");
-        values.put(MediaStore.Images.Media.DESCRIPTION, "XCollage");
-        values.put(MediaStore.Video.Media.RELATIVE_PATH, "Pictures/XCollage");
+        values.put(MediaStore.Images.Media.DESCRIPTION, "CollageApp");
+        values.put(MediaStore.Video.Media.RELATIVE_PATH, "Pictures/CollageApp");
 
 
         long time = System.currentTimeMillis();

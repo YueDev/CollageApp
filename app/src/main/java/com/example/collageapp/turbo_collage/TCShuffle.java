@@ -9,6 +9,9 @@ import java.util.Set;
 
 public class TCShuffle {
 
+    //循环次数 源代码500次，改成50次效果也还行
+    private static final int LOOP_NUM = 50;
+
     TCShuffle mShuffle1;
     TCShuffle mShuffle2;
     TCShuffle mShuffle3;
@@ -17,15 +20,15 @@ public class TCShuffle {
     double mRatio;
     TCJoin mTCJoin;
 
-    private double a(double d, double d2) {
+    private double getMin(double d, double d2) {
         List<TCCollageItem> arrayList = new ArrayList<>(getCount());
         refreshList(arrayList, new TCRect(0.0, 0.0, 1.0, 1.0));
 
         double result = 4726483295817170944.0;
 
         for (TCCollageItem item : arrayList) {
-            double c2 = Math.min(item.ratioRect.right * d, result);
-            result = Math.min(item.ratioRect.bottom * d2, c2);
+            double c2 = Math.min(item.getRatioRect().getWidth() * d, result);
+            result = Math.min(item.getRatioRect().getHeight() * d2, c2);
         }
 
         return result;
@@ -71,48 +74,88 @@ public class TCShuffle {
         return shuffle;
     }
 
-    //根据ratioMap， width和height 获得Shuffle
+
+    //gpt优化版本 说实话源码没看懂，在下边
     public static TCShuffle getTotalShuffle(Map<String, Double> ratioMap, double width, double height) {
+        // 如果映射为空，直接返回null
         if (ratioMap.isEmpty()) return null;
 
-        TCShuffle result;
-        double canvasRatio = width / height;
-        TCShuffle shuffle = getTotalShuffle(ratioMap);
-        shuffle.refreshJoinType(canvasRatio);
-        int i = 0;
-        TCShuffle dVar = null;
-        double r17 = 0;
-        while (i < 500) {
-            double z = r17;
-            TCShuffle dVar2 = dVar;
-            if (Math.abs(shuffle.getTotalRatio() - canvasRatio) < 0.01d) {
-                double z2 = r17;
-                if (dVar == null) {
-                    dVar2 = shuffle;
-                    z2 = shuffle.a(width, height);
-                }
-                double a2 = shuffle.a(width, height);
-                z = z2;
-                if (a2 > z2) {
-                    z = a2;
-                    dVar2 = shuffle;
+        double canvasRatio = width / height;  // 计算画布的宽高比
+        TCShuffle bestShuffle = null;  // 用于存储最优的shuffle对象
+        double bestMinValue = 0;  // 最优shuffle对应的最小值
+        TCShuffle currentShuffle = getTotalShuffle(ratioMap);  // 获取初始shuffle对象
+        currentShuffle.refreshJoinType(canvasRatio);  // 更新当前shuffle的类型
+
+        // 迭代500次以找到最佳shuffle
+        for (int i = 0; i < LOOP_NUM; i++) {
+            // 如果当前shuffle的比例非常接近画布比例
+            if (Math.abs(currentShuffle.getTotalRatio() - canvasRatio) < 0.01d) {
+                double currentMinValue = currentShuffle.getMin(width, height);  // 获取当前shuffle的最小值
+
+                // 如果这是第一次找到合适的shuffle，或者找到了更优的最小值
+                if (bestShuffle == null || currentMinValue > bestMinValue) {
+                    bestShuffle = currentShuffle;  // 更新最优shuffle
+                    bestMinValue = currentMinValue;  // 更新最优shuffle对应的最小值
                 }
             }
-            TCShuffle a3 = getTotalShuffle(ratioMap);
-            a3.refreshJoinType(canvasRatio);
-            TCShuffle dVar3 = shuffle;
-            if (Math.abs(a3.getTotalRatio() - canvasRatio) < Math.abs(shuffle.getTotalRatio() - canvasRatio)) {
-                dVar3 = a3;
+
+            // 生成新的shuffle对象并比较
+            TCShuffle newShuffle = getTotalShuffle(ratioMap);
+            newShuffle.refreshJoinType(canvasRatio);
+
+            // 如果新shuffle的总比例更接近画布比例，则更新当前shuffle
+            if (Math.abs(newShuffle.getTotalRatio() - canvasRatio) < Math.abs(currentShuffle.getTotalRatio() - canvasRatio)) {
+                currentShuffle = newShuffle;
             }
-            i++;
-            r17 = z;
-            dVar = dVar2;
-            shuffle = dVar3;
         }
-        result = dVar;
-        if (result == null) result = shuffle;
-        return result;
+
+        // 返回找到的最佳shuffle对象，如果没有找到则返回最后一次的shuffle
+        return bestShuffle != null ? bestShuffle : currentShuffle;
     }
+
+    //根据ratioMap， width和height 获得Shuffle
+    // 源码  尽量不要删除
+//    public static TCShuffle getTotalShuffle(Map<String, Double> ratioMap, double width, double height) {
+//        if (ratioMap.isEmpty()) return null;
+//
+//        TCShuffle result;
+//        double canvasRatio = width / height;
+//        TCShuffle shuffle = getTotalShuffle(ratioMap);
+//        shuffle.refreshJoinType(canvasRatio);
+//        int i = 0;
+//        TCShuffle dVar = null;
+//        double r17 = 0;
+//        while (i < 500) {
+//            double z = r17;
+//            TCShuffle dVar2 = dVar;
+//            if (Math.abs(shuffle.getTotalRatio() - canvasRatio) < 0.01d) {
+//                double z2 = r17;
+//                if (dVar == null) {
+//                    dVar2 = shuffle;
+//                    z2 = shuffle.getMin(width, height);
+//                }
+//                double a2 = shuffle.getMin(width, height);
+//                z = z2;
+//                if (a2 > z2) {
+//                    z = a2;
+//                    dVar2 = shuffle;
+//                }
+//            }
+//            TCShuffle a3 = getTotalShuffle(ratioMap);
+//            a3.refreshJoinType(canvasRatio);
+//            TCShuffle dVar3 = shuffle;
+//            if (Math.abs(a3.getTotalRatio() - canvasRatio) < Math.abs(shuffle.getTotalRatio() - canvasRatio)) {
+//                dVar3 = a3;
+//            }
+//            i++;
+//            r17 = z;
+//            dVar = dVar2;
+//            shuffle = dVar3;
+//        }
+//        result = dVar;
+//        if (result == null) result = shuffle;
+//        return result;
+//    }
 
     private void setRatio(double setRatio) {
         this.mRatio = setRatio;
@@ -193,19 +236,19 @@ public class TCShuffle {
         double totalRatio2 = this.mShuffle2.getTotalRatio();
         if (this.mTCJoin == TCJoin.TCLeftRightJoin) {
             if (TCUtils.randomBoolean()) {
-                s1Bound = new TCRect(bound.left, bound.top, bound.right * (totalRatio1 / (totalRatio2 + totalRatio1)), bound.bottom);
-                s2Bound = new TCRect(bound.left + s1Bound.right, bound.top, bound.right - s1Bound.right, bound.bottom);
+                s1Bound = new TCRect(bound.getLeft(), bound.getTop(), bound.getWidth() * (totalRatio1 / (totalRatio2 + totalRatio1)), bound.getHeight());
+                s2Bound = new TCRect(bound.getLeft() + s1Bound.getWidth(), bound.getTop(), bound.getWidth() - s1Bound.getWidth(), bound.getHeight());
             } else {
-                s2Bound = new TCRect(bound.left, bound.top, bound.right * (totalRatio2 / (totalRatio1 + totalRatio2)), bound.bottom);
-                s1Bound = new TCRect(bound.left + s2Bound.right, bound.top, bound.right - s2Bound.right, bound.bottom);
+                s2Bound = new TCRect(bound.getLeft(), bound.getTop(), bound.getWidth() * (totalRatio2 / (totalRatio1 + totalRatio2)), bound.getHeight());
+                s1Bound = new TCRect(bound.getLeft() + s2Bound.getWidth(), bound.getTop(), bound.getWidth() - s2Bound.getWidth(), bound.getHeight());
             }
         } else {
             if (TCUtils.randomBoolean()) {
-                s1Bound = new TCRect(bound.left, bound.top, bound.right, ((1.0 / totalRatio1) / ((1.0 / totalRatio1) + (1.0 / totalRatio2))) * bound.bottom);
-                s2Bound = new TCRect(bound.left, bound.top + s1Bound.bottom, bound.right, bound.bottom - s1Bound.bottom);
+                s1Bound = new TCRect(bound.getLeft(), bound.getTop(), bound.getWidth(), ((1.0 / totalRatio1) / ((1.0 / totalRatio1) + (1.0 / totalRatio2))) * bound.getHeight());
+                s2Bound = new TCRect(bound.getLeft(), bound.getTop() + s1Bound.getHeight(), bound.getWidth(), bound.getHeight() - s1Bound.getHeight());
             } else {
-                s2Bound = new TCRect(bound.left, bound.top, bound.right, ((1.0 / totalRatio2) / ((1.0 / totalRatio1) + (1.0 / totalRatio2))) * bound.bottom);
-                s1Bound = new TCRect(bound.left, bound.top + s2Bound.bottom, bound.right, bound.bottom - s2Bound.bottom);
+                s2Bound = new TCRect(bound.getLeft(), bound.getTop(), bound.getWidth(), ((1.0 / totalRatio2) / ((1.0 / totalRatio1) + (1.0 / totalRatio2))) * bound.getHeight());
+                s1Bound = new TCRect(bound.getLeft(), bound.getTop() + s2Bound.getHeight(), bound.getWidth(), bound.getHeight() - s2Bound.getHeight());
             }
         }
 

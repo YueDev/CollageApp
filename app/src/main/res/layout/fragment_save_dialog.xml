@@ -40,7 +40,6 @@
                 android:id="@+id/text_view_low"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/boston_black"
                 android:text="Regular"
                 android:textColor="#ff54b3a8"
                 android:textSize="15sp" />
@@ -49,7 +48,6 @@
                 android:id="@+id/text_view_low2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/boston_semi_bold"
                 android:text="Up to 1080px"
                 android:textColor="#ff54b3a8"
                 android:textSize="10sp" />
@@ -69,7 +67,6 @@
                 android:id="@+id/text_view_normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/boston_black"
                 android:text="High"
                 android:textColor="#ff999999"
                 android:textSize="15sp" />
@@ -78,7 +75,6 @@
                 android:id="@+id/text_view_normal2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/boston_semi_bold"
                 android:text="Up to 2160px"
                 android:textColor="#ff999999"
                 android:textSize="10sp" />
@@ -98,7 +94,6 @@
                 android:id="@+id/text_view_high"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/boston_black"
                 android:text="Ultrahigh"
                 android:textColor="#ff999999"
                 android:textSize="15sp" />
@@ -107,7 +102,6 @@
                 android:id="@+id/text_view_high2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/boston_semi_bold"
                 android:text="Up to 4096px"
                 android:textColor="#ff999999"
                 android:textSize="10sp" />
@@ -141,7 +135,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/boston_black"
                 android:text="@string/save"
                 android:textColor="#ffffffff"
                 android:textSize="17sp" />
@@ -152,7 +145,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/boston_black"
                 android:text="@string/saved"
                 android:textColor="#ffffffff"
                 android:textSize="17sp"

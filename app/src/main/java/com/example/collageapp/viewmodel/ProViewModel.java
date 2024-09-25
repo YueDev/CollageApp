@@ -8,9 +8,9 @@ import androidx.lifecycle.ViewModel;
  */
 public class ProViewModel extends ViewModel {
 
-    private final MutableLiveData<Boolean> mIsRemoveWater = new MutableLiveData<>(false);
+    private final MutableLiveData<Boolean> mIsRemoveWater = new MutableLiveData<>(true);
 
-    private final MutableLiveData<Boolean> mIsProUser = new MutableLiveData<>(false);
+    private final MutableLiveData<Boolean> mIsProUser = new MutableLiveData<>(true);
 
     public MutableLiveData<Boolean> getIsProUser() {
         return mIsProUser;

@@ -26,14 +26,14 @@ public class TCCollage {
         bitmapMap.clear();
         collageItems.clear();
 
-        collageItems.add(new TCCollageItem(null, new TCRect(0.0d, 0.0d, 1.0d, 1.0d)));
+        collageItems.add(new TCCollageItem("", new TCRect(0.0d, 0.0d, 1.0d, 1.0d)));
 
         if (bitmaps != null && !bitmaps.isEmpty()) {
             for (TCBitmap bitmap : bitmaps) {
-                String uuid = bitmap.getUUID();
+                String uuid = bitmap.getUuid();
                 TCCollageItem emptyCollageItem = getEmptyItemOrNull();
                 if (emptyCollageItem != null) {
-                    emptyCollageItem.uuid = uuid;
+                    emptyCollageItem.setUuid(uuid);
                 } else {
                     int index = getMaxBoundIndex();
                     TCRect tcRect = index < 0 ? new TCRect(0.0d, 0.0d, 1.0d, 1.0d) : getTCRect(index);
@@ -80,8 +80,8 @@ public class TCCollage {
         for (int i = 0; i < this.collageItems.size(); i++) {
             TCCollageItem collageItem = this.collageItems.get(i);
             TCRect tcRectF = getItemInCanvasRect(collageItem, frame, width, height);
-            if (!collageItem.emptyUUID()) {
-                result.add(collageItem.uuid, tcRectF.getRectF());
+            if (!collageItem.isEmptyUUID()) {
+                result.add(collageItem.getUuid(), tcRectF.getRectF());
             }
         }
         return result;
@@ -89,21 +89,24 @@ public class TCCollage {
 
 
     TCRect getItemInCanvasRect(TCCollageItem collageItem, double frame, double width, double height) {
-        double c = collageItem.ratioRect.left <= 0 ? 2 * frame : frame;
-        double c2 = collageItem.ratioRect.left + collageItem.ratioRect.right >= 1.0 ? 2 * frame : frame;
-        double c3 = collageItem.ratioRect.top <= 0 ? 2 * frame : frame;
+        double c = collageItem.getRatioRect().getLeft() <= 0 ? 2 * frame : frame;
+        double c2 = collageItem.getRatioRect().getLeft() + collageItem.getRatioRect().getWidth() >= 1.0 ? 2 * frame : frame;
+        double c3 = collageItem.getRatioRect().getTop() <= 0 ? 2 * frame : frame;
         double c4 = frame;
-        if (collageItem.ratioRect.top + collageItem.ratioRect.bottom >= 1.0) {
+        if (collageItem.getRatioRect().getTop() + collageItem.getRatioRect().getHeight() >= 1.0) {
             c4 = frame * 2;
         }
-        return new TCRect((collageItem.ratioRect.left * width) + c, (collageItem.ratioRect.top * height) + c3, (collageItem.ratioRect.right * width) - (c + c2), (collageItem.ratioRect.bottom * height) - (c3 + c4));
+        return new TCRect((collageItem.getRatioRect().getLeft() * width) + c,
+                (collageItem.getRatioRect().getTop() * height) + c3,
+                (collageItem.getRatioRect().getWidth() * width) - (c + c2),
+                (collageItem.getRatioRect().getHeight() * height) - (c3 + c4));
     }
 
 
     private void reCollage() {
         this.collageItems.clear();
         if (bitmapMap.isEmpty()) {
-            collageItems.add(new TCCollageItem(null, new TCRect(0.0, 0.0, 1.0, 1.0)));
+            collageItems.add(new TCCollageItem("", new TCRect(0.0, 0.0, 1.0, 1.0)));
         } else {
             HashMap<String, Double> ratioMap = new HashMap<>();
             for (Map.Entry<String, TCBitmap> entry : bitmapMap.entrySet()) {
@@ -130,7 +133,7 @@ public class TCCollage {
     private List<TCCollageItem> getEmptyUUIDCollageItems() {
         List<TCCollageItem> list = new ArrayList<>();
         for (TCCollageItem collageItem : this.collageItems) {
-            if (collageItem.emptyUUID()) {
+            if (collageItem.isEmptyUUID()) {
                 list.add(collageItem);
             }
         }
@@ -158,13 +161,13 @@ public class TCCollage {
         TCCollageItem item = this.collageItems.get(i);
         //0.4-0.59之间的随机数
         double randomNum = 0.4 + (new Random().nextInt(20) / 100.0);
-        TCRect ratioRect = item.ratioRect;
-        if (item.ratioRect.right * this.width < item.ratioRect.bottom * this.height) {
-            item.ratioRect = new TCRect(ratioRect.left, ratioRect.top, ratioRect.right, ratioRect.bottom * randomNum);
-            tcRect = new TCRect(ratioRect.left, ratioRect.top + (ratioRect.bottom * randomNum), ratioRect.right, (1.0 - randomNum) * ratioRect.bottom);
+        TCRect ratioRect = item.getRatioRect();
+        if (item.getRatioRect().getWidth() * this.width < item.getRatioRect().getHeight() * this.height) {
+            item.setRatioRect(new TCRect(ratioRect.getLeft(), ratioRect.getTop(), ratioRect.getWidth(), ratioRect.getHeight() * randomNum));
+            tcRect = new TCRect(ratioRect.getLeft(), ratioRect.getTop() + (ratioRect.getHeight() * randomNum), ratioRect.getWidth(), (1.0 - randomNum) * ratioRect.getHeight());
         } else {
-            item.ratioRect = new TCRect(ratioRect.left, ratioRect.top, ratioRect.right * randomNum, ratioRect.bottom);
-            tcRect = new TCRect(ratioRect.left + (ratioRect.right * randomNum), ratioRect.top, (1.0 - randomNum) * ratioRect.right, ratioRect.bottom);
+            item.setRatioRect(new TCRect(ratioRect.getLeft(), ratioRect.getTop(), ratioRect.getWidth() * randomNum, ratioRect.getHeight()));
+            tcRect = new TCRect(ratioRect.getLeft() + (ratioRect.getWidth() * randomNum), ratioRect.getTop(), (1.0 - randomNum) * ratioRect.getWidth(), ratioRect.getHeight());
         }
         return tcRect;
     }

@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".activity.HomeActivity">
 
-    <com.example.collageapp.view.VerticalScrollView
-        android:id="@+id/view_vertical_scroll"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
+    <ImageView
+        android:id="@+id/image_view_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        />
 
     <View
         android:layout_width="match_parent"
@@ -28,14 +30,6 @@
         android:id="@+id/content_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <ImageView
-            android:layout_width="130dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="25dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/icon_x_collage" />
 
         <ImageView
             android:id="@+id/image_view_setting"
